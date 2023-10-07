@@ -1,2 +1,1 @@
-from .HomeView import *
-from .InitialViews import *
+from .Initgui import *

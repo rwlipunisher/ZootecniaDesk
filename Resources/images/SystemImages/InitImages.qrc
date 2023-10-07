@@ -1,5 +1,5 @@
 <RCC>
-  <qresource prefix="newPrefix">
-    <file>initsettingsBG.jpeg</file>
+  <qresource prefix="Imgs">
+    <file>initsettingsBG.png</file>
   </qresource>
 </RCC>

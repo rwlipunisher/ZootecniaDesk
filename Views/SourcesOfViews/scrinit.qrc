@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="bgImages">
+    <file>initsettingsBG.jpeg</file>
+  </qresource>
+</RCC>

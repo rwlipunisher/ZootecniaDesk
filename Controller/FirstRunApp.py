@@ -2,31 +2,29 @@
 from Views import *
 from Models import *
 from PyQt6.QtWidgets import QApplication
-from PyQt6 import QtWidgets
 
-
-import time
 import os
 
 #from ZootecniaCLHDesktop.settings import ROOT_DIR
 
-class FirstRunSoftware(InitDataBase, ):
+class FirstRunSoftware(InitDataBase):
 
     def __init__(self, app: QApplication) -> None:
         self.splash = SplashScreen()
         self.app = app
         self.viewSelected = None
     
-    def runCheckList(self) -> QMainWindow:
+    '''def runCheckList(self) -> QMainWindow:
         self.splash.show()
         self.splash.show_message("Inicialização do Sistema ...")
         time.sleep(2)
         ui = None
         #Checagem da existencia do banco de dados, se não existe ele cria
-        if self._checkDataBaseExistenceOrCreatIt(self.splash):
+
+        if self.checkDataBaseExistenceOrCreatIt():
             #o banco de dados foi criado ou detectado e esta pronto pra uso
             self.splash.show_message("Validando Chave de Acesso ... ")
-            if self.__validadeToken():
+            if 1==2:
                 #o token esta ativo e é valido no banco de dados
                 #self.viewSelected = Ui_MainWindow()
                 pass
@@ -37,22 +35,23 @@ class FirstRunSoftware(InitDataBase, ):
             self.viewSelected = ViewErrorSystemRestart()
         self.splash.close()
         returnWindow = QtWidgets.QMainWindow()
+        ui = WindowInitialUserActivation()
         ui.setupUi(returnWindow)
         return returnWindow 
+    '''
+   
+   
+    @staticmethod
+    def checkCpfAndToken(toke, cpf):
+        return True
 
-    def _checkDataBaseExistenceOrCreatIt(self, splash: SplashScreen) -> bool:
-        if os.path.exists(self._pathDatabase):
-            splash.show_message("Banco de dados Detectado!")
+    @staticmethod
+    def checkDataBaseExistenceOrCreatIt() -> bool:
+        if os.path.exists(InitDataBase.pathDatabase):
             return True
         else:
-            splash.show_message("Criando Banco de Dados ...")
-            return self._createDatabase()
+            return InitDataBase.createDatabase()
+        
     
-    @staticmethod
-    def checkTokenCPF(token: str, cpf: str ) -> bool:
-        if len(token) != 10:
-            return False
-        else:
-            if cpf != 10:
-                return False
-        return True
+    
+    

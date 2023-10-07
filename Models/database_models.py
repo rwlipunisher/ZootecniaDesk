@@ -4,7 +4,7 @@ import os
 
 class InitDataBase:
 
-    _pathDatabase = "Resources/DataBase/main.db"
+    pathDatabase = "Resources/DataBase/main.db"
 
     @staticmethod
     def _openConnectDb() -> sqlite3.Connection:
@@ -16,12 +16,12 @@ class InitDataBase:
             return e
     
     @staticmethod
-    def _createDatabase() -> bool:
+    def createDatabase() -> bool:
         '''Este método é usado apenas na ativação do software
         Observe que ele so cria o banco e a tabela do usuario
         que acessa o sistema atraves do InitDataBase._creatTableUser'''
         try:
-            connection = sqlite3.connect(InitDataBase._pathDatabase)
+            connection = sqlite3.connect(InitDataBase.pathDatabase)
             InitDataBase._createTableTokenAndStandardUser(connection)
             connection.close()
             return True
