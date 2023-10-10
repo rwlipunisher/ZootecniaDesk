@@ -36,7 +36,8 @@ if __name__ == "__main__":
           cpf, sem_senha = resultado
           connection.close()
           if cpf != "000":
-               if sem_senha:
+               if not sem_senha:
+                    print("general charge")
                     splashScreen.show_message("Bem vindo!")
                     time.sleep(2)
                     splashScreen.close()
@@ -46,33 +47,26 @@ if __name__ == "__main__":
                     InterfaceInit.setupUi(mainWindowApp)
                     mainWindowApp.show()
                else:
-                    splashScreen.show_message("Bem vindo!")
-                    time.sleep(2)
+                    splashScreen.show_message("Login!")
                     splashScreen.close()
-                    InterfaceInit.loginUi()
-                    mainWindowApp.show()
+                    InterfaceInit.loginUi()                    
           else: 
                splashScreen.show_message("Bem vindo!")
-               time.sleep(2)
                splashScreen.close()
-               #InterfaceInit.tokenCpfInitUi() 
-               del InterfaceInit
-               InterfaceInit = MainWindowApp()
-               InterfaceInit.setupUi(mainWindowApp)
-               mainWindowApp.show()             
+               InterfaceInit.tokenCpfInitUi()         
 
      except sqlite3.Error as e:
-          '''print('foqui')
+          print('foqui')
           create_table_sql = """
           CREATE TABLE IF NOT EXISTS user_access_data (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT CHECK(length(name) <= 30),
             cpf TEXT NOT NULL,
             nascimento DATE,
-            user_name TEXT CHECK(length(user_name) >= 10),
+            user_name TEXT CHECK(length(user_name) >= 4),
             nomeEmpresa TEXT CHECK(length(nomeEmpresa) <= 30),
             cpfOrCnpj TEXT CHECK(length(cpfOrCnpj) <= 14),
-            senha TEXT CHECK(length(senha) >= 3 AND length(senha) <= 6),
+            senha TEXT,
             sem_senha BOOLEAN,
             criador BOOLEAN,
             token TEXT
@@ -86,7 +80,6 @@ if __name__ == "__main__":
           cursor.execute(insert_sql, ("000", ))
           connection.commit()
           connection.close()
-          print(str(e))        '''
           print(str(e)) 
      
 

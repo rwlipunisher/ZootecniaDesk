@@ -2,8 +2,9 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6.QtCore import Qt
 
-class MainWindowApp(object):
+class MainWindowApp():
 
+    
     def setupUi(self, MainWindow: QMainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1103, 586)
@@ -240,6 +241,7 @@ class MainWindowApp(object):
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        MainWindow.show()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -302,4 +304,3 @@ class MainWindowApp(object):
 
     def goToConfiguracoes(self):
         self.stackedWidget.setCurrentIndex(1)
-
