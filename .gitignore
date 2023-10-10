@@ -1,3 +1,6 @@
 __pycache__/
 TempUiFilesGenerateByQtDesigner/
 SourcesOfViews/
+build/
+dist/
+main.spec

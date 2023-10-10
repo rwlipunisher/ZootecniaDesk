@@ -3,11 +3,51 @@ import os
 from Models import InitDataBase
 
 
-class ToolsControllsInitialSettings():
+class ToolsControllsInitialSettings:
    
    @staticmethod
-   def checkCpfAndToken(toke, cpf):
-       return True
+   def checkCnpj(cnpj):
+        # Remove caracteres não numéricos
+        # Verifica se a string tem 14 dígitos
+        if len(cnpj) != 14:
+            return False
+
+        # Calcula o primeiro dígito verificador
+        soma = 0
+        peso = 5
+        for i in range(12):
+            soma += int(cnpj[i]) * peso
+            peso -= 1
+            if peso < 2:
+                peso = 9
+
+        resto = soma % 11
+        if resto < 2:
+            digito1 = 0
+        else:
+            digito1 = 11 - resto
+
+        # Calcula o segundo dígito verificador
+        soma = 0
+        peso = 6
+        for i in range(13):
+            soma += int(cnpj[i]) * peso
+            peso -= 1
+            if peso < 2:
+                peso = 9
+
+        resto = soma % 11
+        if resto < 2:
+            digito2 = 0
+        else:
+            digito2 = 11 - resto
+
+        # Verifica se os dígitos verificadores calculados coincidem com os dígitos do CNPJ
+        if int(cnpj[12]) == digito1 and int(cnpj[13]) == digito2:
+            return True
+        else:
+            return False
+
 
    @staticmethod
    def checkDataBaseExistenceOrCreatIt() -> bool:

@@ -1,10 +1,9 @@
 #index da Aplicação
-
-from Controller import FirstRunSoftware
 from PyQt6.QtWidgets import QApplication
 from Views import *
 from PyQt6 import QtWidgets
 import os
+import sqlite3
 #from ZootecniaCLHDesktop.settings import ROOT_DIR
 
 import sys
@@ -14,32 +13,81 @@ def newMainWindow(Qmain):
 
 
 if __name__ == "__main__":
-     mainDir = os.path.dirname(__file__).replace("\\", "/")
-     app = QApplication(sys.argv)
-     splashScreen = SplashScreen()
-     splashScreen.show()
+     #mainDir = os.path.dirname(sys.executable)
+     #mainDir = os.path.dirname(__file__).replace("\\", "/")
+     mainDir = os.path.dirname(os.path.abspath(__file__))
 
-     '''if FirstRunSoftware.checkDataBaseExistenceOrCreatIt():
-            splashScreen.show_message("Banco de dados .... OK!")
-            time.sleep(1)
-            #o banco de dados foi criado ou detectado e esta pronto pra uso
-            if 1==2: #Faz a checagem se o token existe no banco de dados e é valido
-                #o token esta ativo e é valido no banco de dados
-                #self.viewSelected = Ui_MainWindow()
-                pass
-            else:
-                #o token nao é valido ou nao esta no banco de dados e o sistema não esta ativado
-                splashScreen.show_message("Token Incorreto ... Exit!")
-               # ui = WindowInitialUserActivation()
-     else:
-          viewSelected = ViewErrorSystemRestart()'''
-     splashScreen.close()
+     app = QApplication(sys.argv)
+     splashScreen = SplashScreen(mainDir)
+     splashScreen.show()
      mainWindowApp = QtWidgets.QMainWindow()
-     Interface = InitUserInterfaces(mainWindowApp, str(mainDir))
-     Interface.tokenCpfInitUi()
+     InterfaceInit = InitUserInterfaces(mainWindowApp, str(mainDir))
+     #InterfaceGeneral = GeralInterface(mainWindowApp, str(mainDir))
+
+     db_path = os.path.join(mainDir+ "\Resources\DataBase\main.db")
+
+     try:
+          splashScreen.show_message("Iniciando Sistema ... ")
+          connection = sqlite3.connect(str(db_path))
+          cursor = connection.cursor()
+          consulta = "SELECT cpf, sem_senha FROM user_access_data WHERE id=1"
+          cursor.execute(consulta)
+          resultado = cursor.fetchone()
+          cpf, sem_senha = resultado
+          connection.close()
+          if cpf != "000":
+               if sem_senha:
+                    splashScreen.show_message("Bem vindo!")
+                    time.sleep(2)
+                    splashScreen.close()
+                    #vai pra pagina principal
+                    del InterfaceInit
+                    InterfaceInit = MainWindowApp()
+                    InterfaceInit.setupUi(mainWindowApp)
+                    mainWindowApp.show()
+               else:
+                    splashScreen.show_message("Bem vindo!")
+                    time.sleep(2)
+                    splashScreen.close()
+                    InterfaceInit.loginUi()
+                    mainWindowApp.show()
+          else: 
+               splashScreen.show_message("Bem vindo!")
+               time.sleep(2)
+               splashScreen.close()
+               #InterfaceInit.tokenCpfInitUi() 
+               del InterfaceInit
+               InterfaceInit = MainWindowApp()
+               InterfaceInit.setupUi(mainWindowApp)
+               mainWindowApp.show()             
+
+     except sqlite3.Error as e:
+          '''print('foqui')
+          create_table_sql = """
+          CREATE TABLE IF NOT EXISTS user_access_data (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT CHECK(length(name) <= 30),
+            cpf TEXT NOT NULL,
+            nascimento DATE,
+            user_name TEXT CHECK(length(user_name) >= 10),
+            nomeEmpresa TEXT CHECK(length(nomeEmpresa) <= 30),
+            cpfOrCnpj TEXT CHECK(length(cpfOrCnpj) <= 14),
+            senha TEXT CHECK(length(senha) >= 3 AND length(senha) <= 6),
+            sem_senha BOOLEAN,
+            criador BOOLEAN,
+            token TEXT
+          );
+          """
+          cursor = connection.cursor()
+          cursor.execute(create_table_sql)
+          connection.commit()
+          values = ("00000000000")
+          insert_sql = "INSERT INTO user_access_data (cpf) VALUES (?)"
+          cursor.execute(insert_sql, ("000", ))
+          connection.commit()
+          connection.close()
+          print(str(e))        '''
+          print(str(e)) 
      
+
      sys.exit(app.exec())
-     
-     #vai chamar MidlleController para gerenciar operacoes voltadas ao uso
-     #do software
-    # Create and display the initial views

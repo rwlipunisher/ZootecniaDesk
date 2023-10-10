@@ -1,13 +1,16 @@
 from PyQt6.QtCore import Qt, QRegularExpression, QRect
-from PyQt6.QtGui import QPixmap, QRegularExpressionValidator
+from PyQt6.QtGui import QPixmap, QRegularExpressionValidator, QGuiApplication
 from PyQt6 import QtCore, QtWidgets, QtGui
 from PyQt6.QtWidgets import  QSplashScreen, QMainWindow, QWidget, QApplication
 import os
 import time
+import sqlite3
+
+from Controller import ToolsControllsInitialSettings
 
 class SplashScreen(QSplashScreen):
-    def __init__(self):
-        super().__init__(QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), "splash_image.png")))
+    def __init__(self, mainDir):
+        super().__init__(QPixmap(mainDir+"\Resources\images\SystemImages\splash_image.png"))
 
     def show_message(self, message):
         self.showMessage(message, QtCore.Qt.AlignmentFlag.AlignBottom | QtCore.Qt.AlignmentFlag.AlignCenter, QtCore.Qt.GlobalColor.black)
@@ -20,8 +23,16 @@ class InitUserInterfaces(object):
         self.mainDir = mainDir
         self.MainWindow.setWindowFlag(Qt.WindowType.FramelessWindowHint)
         self.MainWindow.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.MainWindow.setWindowTitle('Centered MainWindow')
+        self.MainWindow.setGeometry(100, 100, 800, 600)  # Set an initial size, which can be adjusted later
+        p_screen = QGuiApplication.primaryScreen()
+        screen = p_screen.availableGeometry()
+        x = (screen.width() - self.MainWindow.width()) // 2
+        y = (screen.height() - self.MainWindow.height()) // 2
+        self.MainWindow.move(x, y)
+        self.dictInit = {}
         self.MainWindow.show()
-    
+
     def initialAccessUi(self):
         self.MainWindow.setObjectName("MainWindow")
         self.MainWindow.resize(689, 733)
@@ -29,9 +40,7 @@ class InitUserInterfaces(object):
         centralwidget.setObjectName("centralwidget")
         label_3 = QtWidgets.QLabel(parent=centralwidget)
         label_3.setGeometry(QtCore.QRect(40, 50, 611, 601))
-        print("border-image: url("+self.mainDir+"/Resources/images/SystemImages/initsettingsBG.png);\n"
-        "border-radius:20px;")
-        label_3.setStyleSheet("border-image: url("+self.mainDir+"/Resources/images/SystemImages/initsettingsBG.png);\n"
+        label_3.setStyleSheet("border-image: url("+self.mainDir+"\Resources\images\SystemImages\initsettingsBG.png);\n"
         "border-radius:20px;")
         label_3.setText("")
         label_3.setObjectName("label_3")
@@ -97,13 +106,8 @@ class InitUserInterfaces(object):
         checkBox_5.setFont(font)
         checkBox_5.setStyleSheet("color: rgb(255, 255, 255);")
         checkBox_5.setObjectName("checkBox_5")
-        checkBox_6 = QtWidgets.QCheckBox(parent=centralwidget)
-        checkBox_6.setGeometry(QtCore.QRect(210, 460, 101, 21))
         font = QtGui.QFont()
         font.setPointSize(10)
-        checkBox_6.setFont(font)
-        checkBox_6.setStyleSheet("color: rgb(255, 255, 255);")
-        checkBox_6.setObjectName("checkBox_6")
         pushButton = QtWidgets.QPushButton(parent=centralwidget)
         pushButton.setGeometry(QtCore.QRect(210, 500, 261, 34))
         pushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(119, 255, 142, 122));\n"
@@ -126,14 +130,98 @@ class InitUserInterfaces(object):
         lineEdit_5.setPlaceholderText("Nome da Empresa")
         lineEdit_6.setPlaceholderText("CPF ou CNPJ")
         checkBox_5.setText("Criador")
-        checkBox_6.setText("Proprietário")
         pushButton.setText("Analisar Dados")
         pushButton_2.setText("Cancelar")
         pushButton_2.clicked.connect(QApplication.quit)
-    
+        pushButton.clicked.connect(self.checkDataToCreateUser)
+
+    def checkDataToCreateUser(self):
+        #get all data in to a listea
+        dictAux = {}
+        dictAux["Nome"] = self.MainWindow.findChild(QtWidgets.QLineEdit, "lineEdit").text()
+        dictAux["Nascimento"] = self.MainWindow.findChild(QtWidgets.QLineEdit, "lineEdit_2").text()
+        dictAux["Usuario"] = self.MainWindow.findChild(QtWidgets.QLineEdit, "lineEdit_3").text()
+        dictAux["NomeEmpresa"] = self.MainWindow.findChild(QtWidgets.QLineEdit, "lineEdit_5").text()
+
+        for key, value in dictAux.items():
+            if not value: 
+                msg_box = QtWidgets.QMessageBox()
+                msg_box.setWindowTitle("Mensagem de Erro")
+                msg_box.setText(f"Confira o {key} e tente novamente!")
+                msg_box.exec()
+                return
+        
+        dictAux["cpfOrCnpj"] = self.MainWindow.findChild(QtWidgets.QLineEdit, "lineEdit_6").text()
+        if not ToolsControllsInitialSettings.checkCnpj(dictAux["cpfOrCnpj"]):
+            if not ToolsControllsInitialSettings.checkCpf(dictAux["cpfOrCnpj"]):
+                msg_box = QtWidgets.QMessageBox()
+                msg_box.setWindowTitle("Mensagem de Erro")
+                msg_box.setText("Confira o CPF ou CNPJ digitado e tente novamente!")
+                msg_box.exec()
+                return
+
+        dictAux["Senha"] = self.MainWindow.findChild(QtWidgets.QLineEdit, "lineEdit_4").text()
+        dictAux["Sem_Senha"] = self.MainWindow.findChild(QtWidgets.QCheckBox, "checkBox_4").isChecked()
+        if dictAux["Sem_Senha"]:
+            if len(dictAux["Senha"]) < 6 and len(dictAux["Senha"]) > 2:
+                msg_box = QtWidgets.QMessageBox()
+                msg_box.setWindowTitle("Mensagem de Erro")
+                msg_box.setText("Senha incorreta, deve conter de 3 a 6 digitos apenas")
+                msg_box.exec()
+                return
+        self.dictInit.update(dictAux)
+        self.dictInit["criador"] = self.MainWindow.findChild(QtWidgets.QCheckBox, "checkBox_5").isChecked()
+        self.firstDataBaseUserWrite()
+
+    def firstDataBaseUserWrite(self):
+        
+
+        try:
+            db_path = os.path.join(self.mainDir+ "\Resources\DataBase\main.db")
+            connection = sqlite3.connect(str(db_path))
+            cursor = connection.cursor()
+            insert_sql = '''UPDATE user_access_data
+                            SET cpf = ?,
+                                token = ?,
+                                name = ?,
+                                nascimento = ?,
+                                user_name = ?,
+                                nomeEmpresa = ?,
+                                cpfOrCnpj = ?,
+                                senha = ?,
+                                sem_senha = ?,
+                                criador = ?
+                            WHERE id = 1'''
+            
+            #insert_sql = "INSERT INTO user_access_data (cpf, token, name, nascimento, user_name, nomeEmpresa, cpfOrCnpj, senha, sem_senha, criador) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            value = tuple(self.dictInit.values())
+            cursor.execute(insert_sql, value)
+            connection.commit()
+            connection.close()
+        except sqlite3.Error as e:
+            print(e, "Esse Erro")
+        
     def changeToinitialAccessUi(self):
-        self.MainWindow.centralWidget().deleteLater()
-        self.initialAccessUi()    
+        cpf = self.MainWindow.findChild(QtWidgets.QLineEdit, "lineEdit")
+        token = self.MainWindow.findChild(QtWidgets.QLineEdit, "lineEdit_2")
+        if ToolsControllsInitialSettings.checkCpf(cpf.text()):
+            if ToolsControllsInitialSettings.checkToken(token.text()):
+                self.MainWindow.findChild(QtWidgets.QLineEdit, "LineEdit")
+                self.dictInit["cpf"] = cpf.text()
+                self.dictInit["token"] = token.text()
+                self.MainWindow.centralWidget().deleteLater()
+                self.initialAccessUi() 
+            else:
+                msg_box = QtWidgets.QMessageBox()
+                msg_box.setWindowTitle("Aviso de Erro!")
+                msg_box.setText("O Token não é Valido")
+                msg_box.exec()
+        else:
+            msg_box = QtWidgets.QMessageBox()
+            msg_box.setWindowTitle("Aviso de Erro!")
+            msg_box.setText("O CPF esta incorreto")
+            msg_box.exec()
+
     def tokenCpfInitUi(self):
         self.MainWindow.setObjectName("MainWindow")
         self.MainWindow.resize(500, 500)
@@ -200,5 +288,62 @@ class InitUserInterfaces(object):
         self.MainWindow.setCentralWidget(centralwidget)
         pushButton.clicked.connect(self.changeToinitialAccessUi)
         pushButton_2.clicked.connect(QApplication.quit)
+
+
+    def loginUi(self):
+        self.MainWindow.setObjectName("MainWindow")
+        self.MainWindow.resize(500, 500)
+        centralwidget = QWidget(self.MainWindow)
+        centralwidget.setObjectName("centralwidget")
+        label = QtWidgets.QLabel(parent=centralwidget)
+        label.setGeometry(QtCore.QRect(70, 30, 321, 391))
+        label.setStyleSheet("border-image: url(:/normal/initsettingsBG.jpeg);\n"
+                            "border-radius: 20px;")
+        label.setText("")
+        label.setObjectName("label")
+        label_2 = QtWidgets.QLabel(parent=centralwidget)
+        label_2.setGeometry(QtCore.QRect(120, 50, 221, 331))
+        label_2.setStyleSheet("border-radius: 20px;\n"
+                            "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(0, 0, 0, 71));")
+        label_2.setText("")
+        label_2.setObjectName("label_2")
+        label_3 = QtWidgets.QLabel(parent=centralwidget)
+        label_3.setGeometry(QtCore.QRect(130, 70, 211, 41))
+        font = QtGui.QFont()
+        font.setPointSize(28)
+        font.setBold(True)
+        label_3.setFont(font)
+        label_3.setStyleSheet("color: rgb(255, 255, 255);")
+        label_3.setObjectName("label_3")
+        label_4 = QtWidgets.QLabel(parent=centralwidget)
+        label_4.setGeometry(QtCore.QRect(140, 140, 191, 20))
+        label_4.setStyleSheet("color: rgb(255, 255, 255);")
+        label_4.setObjectName("label_4")
+        lineEdit = QtWidgets.QLineEdit(parent=centralwidget)
+        lineEdit.setGeometry(QtCore.QRect(140, 180, 181, 22))
+        lineEdit.setObjectName("lineEdit")
+        lineEdit_2 = QtWidgets.QLineEdit(parent=centralwidget)
+        lineEdit_2.setGeometry(QtCore.QRect(140, 210, 181, 22))
+        lineEdit_2.setObjectName("lineEdit_2")
+        pushButton = QtWidgets.QPushButton(parent=centralwidget)
+        pushButton.setGeometry(QtCore.QRect(180, 250, 111, 31))
+        pushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(99, 225, 3, 126));\n"
+                                "color: rgb(255, 255, 255);")
+        pushButton.setObjectName("pushButton")
+        pushButton_2 = QtWidgets.QPushButton(parent=centralwidget)
+        pushButton_2.setGeometry(QtCore.QRect(180, 290, 111, 31))
+        pushButton_2.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(225, 174, 3, 126));\n"
+                                "color: rgb(255, 255, 255);")
+        pushButton_2.setObjectName("pushButton_2")
+        self.MainWindow.setCentralWidget(centralwidget)
+        QtCore.QMetaObject.connectSlotsByName(self.MainWindow)
+        self.MainWindow.setWindowTitle("MainWindow")
+        label_3.setText("Bem Vindo!")
+        label_4.setText("Digite o Usuario e Senha para Entrar")
+        lineEdit.setPlaceholderText("Digite o usuario")
+        lineEdit_2.setPlaceholderText("Digite a Senha")
+        pushButton.setText("Entrar")
+        pushButton_2.setText("Cancelar")
+
 
 
