@@ -36,7 +36,7 @@ if __name__ == "__main__":
           cpf, sem_senha = resultado
           connection.close()
           if cpf != "000":
-               if not sem_senha:
+               if sem_senha:
                     print("general charge")
                     splashScreen.show_message("Bem vindo!")
                     time.sleep(2)
@@ -44,7 +44,7 @@ if __name__ == "__main__":
                     #vai pra pagina principal
                     del InterfaceInit
                     InterfaceInit = MainWindowApp()
-                    InterfaceInit.setupUi(mainWindowApp)
+                    InterfaceInit.setupUi(mainWindowApp, db_path)
                     mainWindowApp.show()
                else:
                     splashScreen.show_message("Login!")
