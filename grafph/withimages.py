@@ -45,8 +45,8 @@ nx.draw_networkx_edges(G, pos, ax=ax)
 trans = ax.transData.transform
 trans2 = fig.transFigure.inverted().transform
 
-piesize = 0.1   # this is the image size
-p2 = piesize / 2.0
+piesize = 0.3  # this is the image size
+p2 = piesize / 1.0
 for n in G:
     xx, yy = trans(pos[n])  # figure coordinates
     xa, ya = trans2((xx, yy))  # axes coordinates

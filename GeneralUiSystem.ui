@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1012</width>
-    <height>692</height>
+    <width>990</width>
+    <height>575</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -171,7 +171,7 @@ QPushButton:hover{
                 </font>
                </property>
                <property name="text">
-                <string>Sistema Gerenciador</string>
+                <string>Painel Administrativo</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -231,7 +231,7 @@ QPushButton:hover{
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../../../Downloads/nike_app.qrc">
+             <iconset>
               <normaloff>:/icons/icons/cil-window-maximize.png</normaloff>:/icons/icons/cil-window-maximize.png</iconset>
             </property>
             <property name="iconSize">
@@ -251,7 +251,7 @@ QPushButton:hover{
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../../../Downloads/nike_app.qrc">
+             <iconset>
               <normaloff>:/icons/icons/cil-minus.png</normaloff>:/icons/icons/cil-minus.png</iconset>
             </property>
             <property name="iconSize">
@@ -271,7 +271,7 @@ QPushButton:hover{
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../../../Downloads/nike_app.qrc">
+             <iconset>
               <normaloff>:/icons/icons/cil-x.png</normaloff>:/icons/icons/cil-x.png</iconset>
             </property>
             <property name="iconSize">
@@ -394,7 +394,7 @@ QPushButton:pressed {
               <number>0</number>
              </property>
              <item row="1" column="0">
-              <widget class="QPushButton" name="Terceiros">
+              <widget class="QPushButton" name="cadastrosPushButton">
                <property name="maximumSize">
                 <size>
                  <width>40</width>
@@ -405,24 +405,25 @@ QPushButton:pressed {
                 <string notr="true">background-image: url(:/icons/icons/cil-user.png);
 background-repeat: none;
 padding-left: 50px;
-background-position: center left;</string>
+background-position: center left;
+color:rgb(255,255,255);</string>
                </property>
                <property name="text">
-                <string/>
+                <string>Cadastros</string>
                </property>
               </widget>
              </item>
              <item row="0" column="0">
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="buscasPushButton">
                <property name="text">
-                <string>PushButton</string>
+                <string>Busca</string>
                </property>
               </widget>
              </item>
              <item row="2" column="0">
-              <widget class="QPushButton" name="pushButton_3">
+              <widget class="QPushButton" name="configuracoesPushButton">
                <property name="text">
-                <string>PushButton</string>
+                <string>Config</string>
                </property>
               </widget>
              </item>
@@ -465,7 +466,7 @@ background-position: center left;</string>
              <number>0</number>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="accounts_page">
              <property name="styleSheet">
@@ -832,243 +833,418 @@ border: 3px solid rgb(0, 93, 159);</string>
              </layout>
             </widget>
             <widget class="QWidget" name="page">
-             <layout class="QVBoxLayout" name="verticalLayout_7">
+             <layout class="QVBoxLayout" name="verticalLayout_4">
               <item>
-               <widget class="QFrame" name="frame_8">
+               <widget class="QFrame" name="frame_11">
                 <property name="frameShape">
                  <enum>QFrame::StyledPanel</enum>
                 </property>
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <widget class="QLineEdit" name="codChipEdit_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>210</x>
-                   <y>146</y>
-                   <width>244</width>
-                   <height>32</height>
-                  </rect>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(255, 255, 255);</string>
-                 </property>
-                 <property name="placeholderText">
-                  <string>Codigo do Chip</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="nomeEdit_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>460</x>
-                   <y>146</y>
-                   <width>244</width>
-                   <height>32</height>
-                  </rect>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(255, 255, 255);</string>
-                 </property>
-                 <property name="placeholderText">
-                  <string>Nome do Animal</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="cpfCriadorEdit_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>210</x>
-                   <y>456</y>
-                   <width>244</width>
-                   <height>32</height>
-                  </rect>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(255, 255, 255);</string>
-                 </property>
-                 <property name="placeholderText">
-                  <string>CPF do Criador</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="cpfProprietario_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>460</x>
-                   <y>456</y>
-                   <width>244</width>
-                   <height>32</height>
-                  </rect>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(255, 255, 255);</string>
-                 </property>
-                 <property name="placeholderText">
-                  <string>CPF do Criador</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="precoCompraEdit_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>460</x>
-                   <y>332</y>
-                   <width>244</width>
-                   <height>32</height>
-                  </rect>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(255, 255, 255);</string>
-                 </property>
-                 <property name="placeholderText">
-                  <string>Preço de Compra</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="codChipPaiEdit_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>210</x>
-                   <y>332</y>
-                   <width>244</width>
-                   <height>32</height>
-                  </rect>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(255, 255, 255);</string>
-                 </property>
-                 <property name="placeholderText">
-                  <string>Codigo do Chip Pai</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="nascimentoEdit_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>210</x>
-                   <y>208</y>
-                   <width>244</width>
-                   <height>32</height>
-                  </rect>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(255, 255, 255);</string>
-                 </property>
-                 <property name="placeholderText">
-                  <string>Nascimento</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="precoVendaEdit_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>460</x>
-                   <y>394</y>
-                   <width>244</width>
-                   <height>32</height>
-                  </rect>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(255, 255, 255);</string>
-                 </property>
-                 <property name="placeholderText">
-                  <string>Preço de Venda</string>
-                 </property>
-                </widget>
-                <widget class="QLabel" name="label_4">
-                 <property name="geometry">
-                  <rect>
-                   <x>320</x>
-                   <y>40</y>
-                   <width>251</width>
-                   <height>30</height>
-                  </rect>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(255, 255, 255);</string>
-                 </property>
-                 <property name="text">
-                  <string>Alterar Cadastros de Animais</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="tipoSangueEdit_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>210</x>
-                   <y>394</y>
-                   <width>244</width>
-                   <height>32</height>
-                  </rect>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(255, 255, 255);</string>
-                 </property>
-                 <property name="placeholderText">
-                  <string>Tipo Sanguineo</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="salvarAnimalpushButton_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>210</x>
-                   <y>518</y>
-                   <width>191</width>
-                   <height>34</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>PushButton</string>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="codChipMaeEdit_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>210</x>
-                   <y>270</y>
-                   <width>244</width>
-                   <height>32</height>
-                  </rect>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(255, 255, 255);</string>
-                 </property>
-                 <property name="placeholderText">
-                  <string>Codigo do Chip Mae</string>
-                 </property>
-                </widget>
-                <widget class="QComboBox" name="sexoBox_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>460</x>
-                   <y>209</y>
-                   <width>244</width>
-                   <height>30</height>
-                  </rect>
-                 </property>
-                </widget>
-                <widget class="QLineEdit" name="pelagemEdit_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>460</x>
-                   <y>270</y>
-                   <width>244</width>
-                   <height>32</height>
-                  </rect>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: rgb(255, 255, 255);</string>
-                 </property>
-                 <property name="placeholderText">
-                  <string>Pelagem</string>
-                 </property>
-                </widget>
-                <widget class="QPushButton" name="excluirAnimalpushButton">
-                 <property name="geometry">
-                  <rect>
-                   <x>480</x>
-                   <y>520</y>
-                   <width>191</width>
-                   <height>34</height>
-                  </rect>
-                 </property>
-                 <property name="text">
-                  <string>PushButton</string>
-                 </property>
-                </widget>
+                <layout class="QGridLayout" name="gridLayout_10">
+                 <item row="0" column="0">
+                  <widget class="QFrame" name="frame_12">
+                   <property name="styleSheet">
+                    <string notr="true">border: 2px solid rgb(0, 69, 116);
+border-radius: 20px;</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_7">
+                    <item>
+                     <widget class="QLabel" name="label_4">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Imagem de Assinatura</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="AlterarImagemdeAssinaturapushButton">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
+                      <property name="text">
+                       <string>Alterar Imagem de Assinatura</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="frame_16">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="1" column="0" colspan="2">
+                  <widget class="QFrame" name="frame_13">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_9">
+                    <item row="0" column="1">
+                     <widget class="QLabel" name="label_10">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Perfil de Acesso</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLineEdit" name="nomePerfilAcessolineEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255,255,255);</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Nome</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QLineEdit" name="cpfPerfilAcessolineEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255,255,255);</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Nome Empresarial</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="2">
+                     <widget class="QLineEdit" name="nomeUsuarioPerfilAcessolineEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255,255,255);</string>
+                      </property>
+                      <property name="text">
+                       <string>Nome de Usuario</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Nome Empresarial</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QLineEdit" name="cpfPerfilAcessolineEdit_2">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255,255,255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>CPF</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="1">
+                     <widget class="QLineEdit" name="cpfOuCnpjPerfilAcessolineEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255,255,255);</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="placeholderText">
+                       <string>CPF ou CNPJ</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="2">
+                     <widget class="QLineEdit" name="senhaPerfilAcessolineEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255,255,255);</string>
+                      </property>
+                      <property name="text">
+                       <string>Senha</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Nome Empresarial</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="0">
+                     <widget class="QLineEdit" name="nascimentoPerfilAcessolineEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255,255,255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Nascimento</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="1">
+                     <widget class="QCheckBox" name="criadorPerfilAcessocheckBox">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);</string>
+                      </property>
+                      <property name="text">
+                       <string>Criador</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="2">
+                     <widget class="QCheckBox" name="senhaPerfilAcessocheckBox">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);</string>
+                      </property>
+                      <property name="text">
+                       <string>Sem-Senha</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="1">
+                     <widget class="QPushButton" name="alterarAcessosPerfilAcessospushButton">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
+                      <property name="text">
+                       <string>Alterar Acessos</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QFrame" name="frame_15">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_13">
+                    <item>
+                     <widget class="QLabel" name="label_12">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Fazer back up</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="backupAssocialpushButton">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
+                      <property name="text">
+                       <string>Backup Associação</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="backupSeguranapushButton">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
+                      <property name="text">
+                       <string>Backup Segurança</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="0" column="1" colspan="2">
+                  <widget class="QFrame" name="frame_14">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QFormLayout" name="formLayout_3">
+                    <item row="1" column="0">
+                     <widget class="QFrame" name="frame_17">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);
+
+</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_2">
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="label_13">
+                         <property name="styleSheet">
+                          <string notr="true">color:rgb(255,255,255);
+</string>
+                         </property>
+                         <property name="text">
+                          <string>Importação de Animais</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLineEdit" name="arquivo">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255,255,255);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="placeholderText">
+                          <string>Nome</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="3" column="0" colspan="2">
+                        <widget class="QPushButton" name="importarAnimaispushButton">
+                         <property name="styleSheet">
+                          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                         </property>
+                         <property name="text">
+                          <string>Importar!</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0" colspan="2">
+                        <widget class="QComboBox" name="tipoImportacaoAnimaiscomboBox">
+                         <item>
+                          <property name="text">
+                           <string>Somente Cadastros Novos</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Cadastros de Atualização</string>
+                          </property>
+                         </item>
+                        </widget>
+                       </item>
+                       <item row="1" column="1">
+                        <widget class="QPushButton" name="escolherArquivoImportacaoAnaimaispushButton">
+                         <property name="styleSheet">
+                          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                         </property>
+                         <property name="text">
+                          <string>Arquivo</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QFrame" name="frame_18">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);
+
+</string>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_8">
+                       <item row="1" column="1">
+                        <widget class="QPushButton" name="esclhoerArquivoImportacaoTerceiropushButton">
+                         <property name="styleSheet">
+                          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                         </property>
+                         <property name="text">
+                          <string>Arquivo</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0" colspan="2">
+                        <widget class="QComboBox" name="tipoImportacaoTerceirocomboBox">
+                         <item>
+                          <property name="text">
+                           <string>Somente Cadastros Novos</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Cadastros de Atualização</string>
+                          </property>
+                         </item>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLineEdit" name="lineEdit_11">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255,255,255);</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="placeholderText">
+                          <string>Nome</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="3" column="0" colspan="2">
+                        <widget class="QPushButton" name="importarTerceirospushButton">
+                         <property name="styleSheet">
+                          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                         </property>
+                         <property name="text">
+                          <string>Importar!</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="0" colspan="2">
+                        <widget class="QLabel" name="label_14">
+                         <property name="styleSheet">
+                          <string notr="true">color:rgb(255,255,255);
+</string>
+                         </property>
+                         <property name="text">
+                          <string>Importação de Terceiros</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="0" column="0" colspan="2">
+                     <widget class="QLabel" name="label_11">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Importação de Dados</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
              </layout>
@@ -1092,180 +1268,8 @@ border: 3px solid rgb(0, 93, 159);</string>
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_7">
-                 <item>
-                  <widget class="QFrame" name="frame_3">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>16777215</height>
-                    </size>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout">
-                    <item row="1" column="0">
-                     <widget class="QLineEdit" name="codChipEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Codigo do Chip</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="6" column="1">
-                     <widget class="QLineEdit" name="cpfProprietario">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>CPF do Criador</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="0">
-                     <widget class="QLineEdit" name="tipoSangueEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Tipo Sanguineo</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="1">
-                     <widget class="QComboBox" name="sexoBox"/>
-                    </item>
-                    <item row="3" column="0">
-                     <widget class="QLineEdit" name="codChipMaeEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Codigo do Chip Mae</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="1">
-                     <widget class="QLineEdit" name="nomeEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Nome do Animal</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QLineEdit" name="nascimentoEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Nascimento</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="1">
-                     <widget class="QLineEdit" name="precoVendaEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Preço de Venda</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="0">
-                     <widget class="QLineEdit" name="codChipPaiEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Codigo do Chip Pai</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="6" column="0">
-                     <widget class="QLineEdit" name="cpfCriadorEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>CPF do Criador</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="1">
-                     <widget class="QLineEdit" name="precoCompraEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Preço de Compra</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="0" colspan="2">
-                     <widget class="QFrame" name="frame_5">
-                      <property name="maximumSize">
-                       <size>
-                        <width>500</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <layout class="QGridLayout" name="gridLayout_2">
-                       <item row="0" column="0">
-                        <widget class="QLabel" name="label_3">
-                         <property name="styleSheet">
-                          <string notr="true">color: rgb(255, 255, 255);</string>
-                         </property>
-                         <property name="text">
-                          <string>Cadastrar Novo Animal</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item row="3" column="1">
-                     <widget class="QLineEdit" name="pelagemEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Pelagem</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="7" column="0" colspan="2">
-                     <widget class="QPushButton" name="salvarAnimalpushButton">
-                      <property name="text">
-                       <string>PushButton</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item>
+                <layout class="QGridLayout" name="gridLayout_7">
+                 <item row="0" column="1">
                   <widget class="QFrame" name="frame_4">
                    <property name="minimumSize">
                     <size>
@@ -1288,6 +1292,12 @@ border: 3px solid rgb(0, 93, 159);</string>
                    <layout class="QVBoxLayout" name="verticalLayout_10">
                     <item>
                      <widget class="QLabel" name="label_8">
+                      <property name="font">
+                       <font>
+                        <pointsize>20</pointsize>
+                        <bold>true</bold>
+                       </font>
+                      </property>
                       <property name="styleSheet">
                        <string notr="true">color: rgb(255, 255, 255);</string>
                       </property>
@@ -1348,8 +1358,227 @@ border: 3px solid rgb(0, 93, 159);</string>
                     </item>
                     <item>
                      <widget class="QPushButton" name="SalvarTerceiropushButton">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
                       <property name="text">
-                       <string>PushButton</string>
+                       <string>Salvar</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton_3">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
+                      <property name="text">
+                       <string>Excluir</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QFrame" name="frame_3">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout">
+                    <item row="3" column="0">
+                     <widget class="QLineEdit" name="codChipMaeEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Codigo do Chip Mae</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="1">
+                     <widget class="QLineEdit" name="pelagemEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Pelagem</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="6" column="1">
+                     <widget class="QLineEdit" name="cpfProprietario">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>CPF do Criador</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="8" column="0">
+                     <widget class="QPushButton" name="pushButton_2">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
+                      <property name="text">
+                       <string>Excluir</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QLineEdit" name="nascimentoEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Nascimento</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="0">
+                     <widget class="QLineEdit" name="codChipPaiEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Codigo do Chip Pai</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="1">
+                     <widget class="QLineEdit" name="precoCompraEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Preço de Compra</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="1">
+                     <widget class="QLineEdit" name="precoVendaEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Preço de Venda</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="0">
+                     <widget class="QLineEdit" name="tipoSangueEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Tipo Sanguineo</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="6" column="0">
+                     <widget class="QLineEdit" name="cpfCriadorEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>CPF do Criador</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="1">
+                     <widget class="QLineEdit" name="Sexo">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Digite Feminino ou Masculuno</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0" colspan="2">
+                     <widget class="QLabel" name="label_3">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <pointsize>20</pointsize>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);</string>
+                      </property>
+                      <property name="text">
+                       <string>Cadastrar e Alteraçao de Animais</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="8" column="1">
+                     <widget class="QPushButton" name="salvarAnimalpushButton">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
+                      <property name="text">
+                       <string>Salvar</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QLineEdit" name="nomeEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Nome do Animal</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLineEdit" name="codChipEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Codigo do Chip</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="7" column="0">
+                     <widget class="QLabel" name="foto1Animallabel">
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="7" column="1">
+                     <widget class="QLabel" name="foto2Animallabel">
+                      <property name="text">
+                       <string/>
                       </property>
                      </widget>
                     </item>
@@ -1371,77 +1600,407 @@ border: 3px solid rgb(0, 93, 159);</string>
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <widget class="QFrame" name="frame">
-                 <property name="geometry">
-                  <rect>
-                   <x>90</x>
-                   <y>80</y>
-                   <width>415</width>
-                   <height>252</height>
-                  </rect>
-                 </property>
-                 <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_3">
-                  <item row="0" column="0">
-                   <widget class="QComboBox" name="criterioDeBuscaComboBox">
-                    <property name="placeholderText">
-                     <string>Criterio</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QLineEdit" name="buscaDeAnimallineEdit"/>
-                  </item>
-                  <item row="0" column="2">
-                   <widget class="QPushButton" name="buscarAnimalpushButton">
-                    <property name="text">
-                     <string>PushButton</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0" colspan="3">
-                   <widget class="QTableWidget" name="buscaDeAnimaltableWidget">
-                    <property name="styleSheet">
-                     <string notr="true">color: rgb(255, 255, 255);</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-                <widget class="QFrame" name="frame_7">
-                 <property name="geometry">
-                  <rect>
-                   <x>520</x>
-                   <y>50</y>
-                   <width>371</width>
-                   <height>441</height>
-                  </rect>
-                 </property>
-                 <property name="frameShape">
-                  <enum>QFrame::StyledPanel</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
-                 </property>
-                 <widget class="QPushButton" name="pushButton_5">
-                  <property name="geometry">
-                   <rect>
-                    <x>150</x>
-                    <y>340</y>
-                    <width>105</width>
-                    <height>34</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>PushButton</string>
-                  </property>
-                 </widget>
-                </widget>
+                <layout class="QHBoxLayout" name="horizontalLayout_8">
+                 <item>
+                  <widget class="QFrame" name="frame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>650</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>650</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_3">
+                    <item row="3" column="0">
+                     <widget class="QComboBox" name="criterioBuscaComboBox">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(0, 0, 0, 71));</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Criterio</string>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>Chip</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>ChipPai</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>ChipMae</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Nascimento</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Nome</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Pelagem</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Proprietario</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Preço de Compra</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Preço de Venda</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>200</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>100</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <pointsize>16</pointsize>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>Busca de Animais</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="0" colspan="3">
+                     <widget class="QFrame" name="frame_9">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>1000</width>
+                        <height>50</height>
+                       </size>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_5">
+                       <item row="0" column="0">
+                        <widget class="QCheckBox" name="nascimentoBuscacheckBox">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Nasc</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="1">
+                        <widget class="QCheckBox" name="codChipMaeBuscacheckBox">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Mãe</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="2">
+                        <widget class="QCheckBox" name="codChipPaiBuscacheckBox">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Pai</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="3">
+                        <widget class="QCheckBox" name="pelagemBuscacheckbox">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Pelagem</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="4">
+                        <widget class="QCheckBox" name="criadorBuscacheckBox">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Criador</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="5">
+                        <widget class="QCheckBox" name="proprietarioBuscacheckBox">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Proprietario</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QCheckBox" name="vendaBuscacheckBox">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Venda</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="1" colspan="2">
+                        <widget class="QCheckBox" name="compraBuscacheckBox">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Compra</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="3" column="2">
+                     <widget class="QPushButton" name="buscarAnimalpushButton">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
+                      <property name="text">
+                       <string>Buscar</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="1">
+                     <widget class="QLineEdit" name="buscaDeAnimallineEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Digite aqui a sua busca</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="0" colspan="3">
+                     <widget class="QTableWidget" name="buscaDeAnimaltableWidget">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>300</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>300</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_7">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_4">
+                    <item row="0" column="0" colspan="3">
+                     <widget class="QLabel" name="label_9">
+                      <property name="minimumSize">
+                       <size>
+                        <width>100</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <pointsize>16</pointsize>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="text">
+                       <string>Busca de Terceiros</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QComboBox" name="criterioBuscaTerceirocomboBox">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(0, 0, 0, 71));</string>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>Criterio</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>CPF</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Contato</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Nome</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QLineEdit" name="buscaTerceirolineEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255,255,255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Digite aqui</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="2">
+                     <widget class="QPushButton" name="buscarTerceiropushButton">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
+                      <property name="text">
+                       <string>Buscar</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0" colspan="3">
+                     <widget class="QFrame" name="frame_10">
+                      <property name="minimumSize">
+                       <size>
+                        <width>50</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>500</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_6">
+                       <item row="0" column="0">
+                        <widget class="QCheckBox" name="cidadeTerceirocheckBox">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Cidade</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="1">
+                        <widget class="QCheckBox" name="observacoesTerceirocheckBox">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Observações</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="3" column="0" colspan="3">
+                     <widget class="QTableView" name="tableView">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>300</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>300</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
               </item>
              </layout>
@@ -1537,8 +2096,6 @@ QLabel{
    </layout>
   </widget>
  </widget>
- <resources>
-  <include location="../../../Downloads/nike_app.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

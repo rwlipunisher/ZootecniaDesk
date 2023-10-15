@@ -8,9 +8,9 @@ altura = 100
 fig, ax = plt.subplots(figsize=(largura / 100, altura / 100))
 
 # Desenhe uma tabela
-cell_text = [['A', 'B', 'C', 'D'],
-             ['1', '2', '3', '4'],
-             ['5', '6', '7', '8']]
+cell_text = [['Microchip', '001010100101'],
+             ['Nome', 'Coelho'],
+             ['Nasc', '12/04/1993']]
 
 table = ax.table(cellText=cell_text, cellLoc='center', loc='center', bbox=[0, 0, 1, 1])
 
