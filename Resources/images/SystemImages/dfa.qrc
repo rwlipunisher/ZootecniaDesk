@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="bgincons">
+    <file>home.png</file>
+    <file>splash_image.jpg</file>
+  </qresource>
+</RCC>

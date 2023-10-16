@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>990</width>
-    <height>575</height>
+    <width>1032</width>
+    <height>688</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -374,56 +374,51 @@ QPushButton:pressed {
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <layout class="QFormLayout" name="formLayout">
-             <property name="horizontalSpacing">
-              <number>0</number>
-             </property>
-             <property name="verticalSpacing">
-              <number>0</number>
-             </property>
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item row="1" column="0">
-              <widget class="QPushButton" name="cadastrosPushButton">
-               <property name="maximumSize">
-                <size>
-                 <width>40</width>
-                 <height>60</height>
-                </size>
-               </property>
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <widget class="QPushButton" name="buscasPushButton">
                <property name="styleSheet">
-                <string notr="true">background-image: url(:/icons/icons/cil-user.png);
+                <string notr="true">background-image: url(:/bgincons/home.png);
 background-repeat: none;
 padding-left: 50px;
-background-position: center left;
+background-color: rgb(122, 123, 145);
+background-position: center;
 color:rgb(255,255,255);</string>
                </property>
                <property name="text">
-                <string>Cadastros</string>
+                <string/>
                </property>
               </widget>
              </item>
-             <item row="0" column="0">
-              <widget class="QPushButton" name="buscasPushButton">
+             <item>
+              <widget class="QPushButton" name="configuracoespushButton">
+               <property name="styleSheet">
+                <string notr="true">background-image: url(:/bgincons/home.png);
+background-repeat: none;
+padding-left: 50px;
+background-position: center;
+color:rgb(255,255,255);
+background-color: rgb(122, 123, 145);
+</string>
+               </property>
                <property name="text">
-                <string>Busca</string>
+                <string/>
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
-              <widget class="QPushButton" name="configuracoesPushButton">
+             <item>
+              <widget class="QPushButton" name="cadastrospushButton">
+               <property name="styleSheet">
+                <string notr="true">background-image: url(:/bgincons/home.png);
+background-repeat: none;
+padding-left: 50px;
+background-position: center;
+color:rgb(255,255,255);
+background-color: rgb(122, 123, 145);
+</string>
+               </property>
                <property name="text">
-                <string>Config</string>
+                <string/>
                </property>
               </widget>
              </item>
@@ -468,370 +463,6 @@ color:rgb(255,255,255);</string>
             <property name="currentIndex">
              <number>2</number>
             </property>
-            <widget class="QWidget" name="accounts_page">
-             <property name="styleSheet">
-              <string notr="true"/>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_6">
-              <property name="spacing">
-               <number>10</number>
-              </property>
-              <item alignment="Qt::AlignHCenter">
-               <widget class="QFrame" name="login_response_frame">
-                <property name="minimumSize">
-                 <size>
-                  <width>400</width>
-                  <height>100</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>600</width>
-                  <height>300</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QFrame{	
-	color: rgb(255, 255, 255);
-	background-color: rgb(0, 0, 0);
-	border: 2px solid rgb(0, 69, 116);
-	border-radius: 20px;
-}
-QPushButton{	
-	color: rgb(255, 255, 255);
-	background-color: rgb(0, 69, 116);
-	border: none;
-	border-radius: 10px;
-}
-QLabel{
-	padding: 10px;
-	border: none;
-}</string>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QVBoxLayout" name="verticalLayout_11">
-                 <item>
-                  <widget class="QLabel" name="login_response_msg">
-                   <property name="font">
-                    <font>
-                     <family>Open Sans</family>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Login Response Msg</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                  </widget>
-                 </item>
-                 <item alignment="Qt::AlignHCenter">
-                  <widget class="QPushButton" name="login_res_ok_btn">
-                   <property name="minimumSize">
-                    <size>
-                     <width>80</width>
-                     <height>50</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>80</width>
-                     <height>50</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <bold>true</bold>
-                    </font>
-                   </property>
-                   <property name="cursor">
-                    <cursorShape>PointingHandCursor</cursorShape>
-                   </property>
-                   <property name="text">
-                    <string>Ok</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-               <widget class="QFrame" name="login_form_frame">
-                <property name="minimumSize">
-                 <size>
-                  <width>450</width>
-                  <height>350</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>450</width>
-                  <height>350</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">border-radius: 20px;
-</string>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QVBoxLayout" name="verticalLayout_8">
-                 <property name="spacing">
-                  <number>0</number>
-                 </property>
-                 <property name="leftMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>10</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>10</number>
-                 </property>
-                 <item alignment="Qt::AlignHCenter">
-                  <widget class="QFrame" name="input_fileds_frame">
-                   <property name="styleSheet">
-                    <string notr="true">QFrame{
-	background-color: rgb(34, 34, 34);
-	color: rgb(255, 255, 255);
-	border: 2px solid rgb(1, 90, 153);
-}
-QLineEdit {
-	border: 2px solid rgb(0, 93, 159);
-	border-radius: 10px;
-	padding: 15px;
-	background-color: rgb(0, 69, 116);
-	color: rgb(255, 255, 255);
-}
-QLineEdit:hover {
-	border: 2px solid rgb(0, 66, 124);
-}
-QLineEdit:focus {
-	border: 2px solid rgb(206, 206, 206);
-	color: rgb(200, 200, 200);
-}
-QPushButton {
-	border: 2px solid rgb(45, 45, 45);
-	border-radius: 10px;
-	padding: 15px;
-	background-color:rgb(14, 13, 24);
-	color: rgb(255, 255, 255);
-}
-QPushButton:hover {
-	border: 2px solid rgb(0, 66, 124);
-}
-QLabel{
-	border:3px solid  rgb(45, 45, 45);
-	border-radius: 10px;
-	
-	background-color: rgb(6, 63, 104);
-}
-QCheckBox{
-	color: rgb(255, 255, 255);
-	padding: 10px;
-}
-QCheckBox::indicator {
-    border: 3px solid rgb(0, 93, 159);
-	width: 20px;
-	height: 20px;
-	border-radius: 10px;
-    background:rgb(0, 0, 0);
-}
-QCheckBox::indicator:hover {
-    border: 3px solid rgb(255, 255, 255);
-}
-QCheckBox::indicator:checked {
-    background: 3px solid rgb(34, 34, 34);
-	background-image: url(:/icons/icons/cil-check.png);
-}</string>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QFormLayout" name="formLayout_2">
-                    <item row="1" column="0">
-                     <widget class="QLabel" name="label_2">
-                      <property name="minimumSize">
-                       <size>
-                        <width>100</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="font">
-                       <font>
-                        <bold>true</bold>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="text">
-                       <string>Username</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="1">
-                     <widget class="QLineEdit" name="username">
-                      <property name="minimumSize">
-                       <size>
-                        <width>200</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>200</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">border:3px solid  rgb(43, 31, 91);
-border-radius: 10px;</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Username</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QLabel" name="label_5">
-                      <property name="minimumSize">
-                       <size>
-                        <width>100</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="font">
-                       <font>
-                        <bold>true</bold>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="text">
-                       <string>Password</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="1">
-                     <widget class="QLineEdit" name="password">
-                      <property name="minimumSize">
-                       <size>
-                        <width>200</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>200</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">border:3px solid  rgb(43, 31, 91);
-border-radius: 10px;</string>
-                      </property>
-                      <property name="echoMode">
-                       <enum>QLineEdit::Password</enum>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Password</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="0" colspan="2">
-                     <widget class="QCheckBox" name="keep_me_logged">
-                      <property name="text">
-                       <string>Keep me logged in</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="1">
-                     <widget class="QPushButton" name="login_btn">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>200</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="cursor">
-                       <cursorShape>PointingHandCursor</cursorShape>
-                      </property>
-                      <property name="text">
-                       <string>Login</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="1">
-                     <widget class="QFrame" name="profile_icon_frame">
-                      <property name="minimumSize">
-                       <size>
-                        <width>50</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>50</width>
-                        <height>50</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">image: url(:/icons/icons/cil-user-follow.png);
-background-color: rgb(34, 34, 34);
-border-radius: 25px;
-border: 3px solid rgb(0, 93, 159);</string>
-                      </property>
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </widget>
             <widget class="QWidget" name="page">
              <layout class="QVBoxLayout" name="verticalLayout_4">
               <item>
@@ -843,234 +474,6 @@ border: 3px solid rgb(0, 93, 159);</string>
                  <enum>QFrame::Raised</enum>
                 </property>
                 <layout class="QGridLayout" name="gridLayout_10">
-                 <item row="0" column="0">
-                  <widget class="QFrame" name="frame_12">
-                   <property name="styleSheet">
-                    <string notr="true">border: 2px solid rgb(0, 69, 116);
-border-radius: 20px;</string>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_7">
-                    <item>
-                     <widget class="QLabel" name="label_4">
-                      <property name="styleSheet">
-                       <string notr="true">color:rgb(255,255,255);
-</string>
-                      </property>
-                      <property name="text">
-                       <string>Imagem de Assinatura</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="AlterarImagemdeAssinaturapushButton">
-                      <property name="styleSheet">
-                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
-                      </property>
-                      <property name="text">
-                       <string>Alterar Imagem de Assinatura</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QFrame" name="frame_16">
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item row="1" column="0" colspan="2">
-                  <widget class="QFrame" name="frame_13">
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_9">
-                    <item row="0" column="1">
-                     <widget class="QLabel" name="label_10">
-                      <property name="styleSheet">
-                       <string notr="true">color:rgb(255,255,255);
-</string>
-                      </property>
-                      <property name="text">
-                       <string>Perfil de Acesso</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="0">
-                     <widget class="QLineEdit" name="nomePerfilAcessolineEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255,255,255);</string>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Nome</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="1">
-                     <widget class="QLineEdit" name="cpfPerfilAcessolineEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255,255,255);</string>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Nome Empresarial</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="2">
-                     <widget class="QLineEdit" name="nomeUsuarioPerfilAcessolineEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255,255,255);</string>
-                      </property>
-                      <property name="text">
-                       <string>Nome de Usuario</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Nome Empresarial</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QLineEdit" name="cpfPerfilAcessolineEdit_2">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255,255,255);</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>CPF</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="1">
-                     <widget class="QLineEdit" name="cpfOuCnpjPerfilAcessolineEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255,255,255);</string>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="placeholderText">
-                       <string>CPF ou CNPJ</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="2">
-                     <widget class="QLineEdit" name="senhaPerfilAcessolineEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255,255,255);</string>
-                      </property>
-                      <property name="text">
-                       <string>Senha</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Nome Empresarial</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="0">
-                     <widget class="QLineEdit" name="nascimentoPerfilAcessolineEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255,255,255);</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Nascimento</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="1">
-                     <widget class="QCheckBox" name="criadorPerfilAcessocheckBox">
-                      <property name="styleSheet">
-                       <string notr="true">color:rgb(255,255,255);</string>
-                      </property>
-                      <property name="text">
-                       <string>Criador</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="2">
-                     <widget class="QCheckBox" name="senhaPerfilAcessocheckBox">
-                      <property name="styleSheet">
-                       <string notr="true">color:rgb(255,255,255);</string>
-                      </property>
-                      <property name="text">
-                       <string>Sem-Senha</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="1">
-                     <widget class="QPushButton" name="alterarAcessosPerfilAcessospushButton">
-                      <property name="styleSheet">
-                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
-                      </property>
-                      <property name="text">
-                       <string>Alterar Acessos</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item row="1" column="2">
-                  <widget class="QFrame" name="frame_15">
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_13">
-                    <item>
-                     <widget class="QLabel" name="label_12">
-                      <property name="styleSheet">
-                       <string notr="true">color:rgb(255,255,255);
-</string>
-                      </property>
-                      <property name="text">
-                       <string>Fazer back up</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="backupAssocialpushButton">
-                      <property name="styleSheet">
-                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
-                      </property>
-                      <property name="text">
-                       <string>Backup Associação</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="backupSeguranapushButton">
-                      <property name="styleSheet">
-                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
-                      </property>
-                      <property name="text">
-                       <string>Backup Segurança</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
                  <item row="0" column="1" colspan="2">
                   <widget class="QFrame" name="frame_14">
                    <property name="frameShape">
@@ -1238,6 +641,279 @@ border-radius: 20px;</string>
                       </property>
                       <property name="text">
                        <string>Importação de Dados</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QFrame" name="frame_15">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_11">
+                    <item row="7" column="0">
+                     <widget class="QPushButton" name="backupSeguranapushButton">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
+                      <property name="text">
+                       <string>Backup Segurança</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QLabel" name="label_12">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>2</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Gerenciar Dados</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="6" column="0">
+                     <widget class="QPushButton" name="backupAssocialpushButton">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
+                      <property name="text">
+                       <string>Backup Associação</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="0">
+                     <widget class="QPushButton" name="selectMainDirpushButton">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
+                      <property name="text">
+                       <string>Diretorio de Dados</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="1" column="0" colspan="2">
+                  <widget class="QFrame" name="frame_13">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_9">
+                    <item row="1" column="0">
+                     <widget class="QLineEdit" name="nomePerfilAcessolineEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255,255,255);</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Nome</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QLineEdit" name="cpfPerfilAcessolineEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255,255,255);</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Nome Empresarial</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="0">
+                     <widget class="QLineEdit" name="nascimentoPerfilAcessolineEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255,255,255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Nascimento</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="2">
+                     <widget class="QCheckBox" name="senhaPerfilAcessocheckBox">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);</string>
+                      </property>
+                      <property name="text">
+                       <string>Sem-Senha</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="1">
+                     <widget class="QLineEdit" name="cpfOuCnpjPerfilAcessolineEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255,255,255);</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="placeholderText">
+                       <string>CPF ou CNPJ</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QLineEdit" name="cpfPerfilAcessolineEdit_2">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255,255,255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>CPF</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="1">
+                     <widget class="QPushButton" name="alterarAcessosPerfilAcessospushButton">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
+                      <property name="text">
+                       <string>Alterar Acessos</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="2">
+                     <widget class="QLineEdit" name="senhaPerfilAcessolineEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255,255,255);</string>
+                      </property>
+                      <property name="text">
+                       <string>Senha</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Nome Empresarial</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="2">
+                     <widget class="QLineEdit" name="nomeUsuarioPerfilAcessolineEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255,255,255);</string>
+                      </property>
+                      <property name="text">
+                       <string>Nome de Usuario</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Nome Empresarial</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="1">
+                     <widget class="QCheckBox" name="criadorPerfilAcessocheckBox">
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);</string>
+                      </property>
+                      <property name="text">
+                       <string>Criador</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0" colspan="3">
+                     <widget class="QLabel" name="label_10">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Perfil de Acesso</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QFrame" name="frame_12">
+                   <property name="styleSheet">
+                    <string notr="true">border-radius: 20px;</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_7">
+                    <item>
+                     <widget class="QLabel" name="label_4">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color:rgb(255,255,255);
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Imagem de Assinatura</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="frame_16">
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="AlterarImagemdeAssinaturapushButton">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
+                      <property name="text">
+                       <string>Alterar Imagem de Assinatura</string>
                       </property>
                      </widget>
                     </item>
@@ -1678,6 +1354,26 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgb
                       </item>
                      </widget>
                     </item>
+                    <item row="3" column="2">
+                     <widget class="QPushButton" name="buscarAnimalpushButton">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
+                      </property>
+                      <property name="text">
+                       <string>Buscar</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="1">
+                     <widget class="QLineEdit" name="buscaDeAnimallineEdit">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>Digite aqui a sua busca</string>
+                      </property>
+                     </widget>
+                    </item>
                     <item row="0" column="0">
                      <widget class="QLabel" name="label">
                       <property name="minimumSize">
@@ -1706,17 +1402,36 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgb
                       </property>
                      </widget>
                     </item>
-                    <item row="4" column="0" colspan="3">
-                     <widget class="QFrame" name="frame_9">
+                    <item row="5" column="0" colspan="3">
+                     <widget class="QTableWidget" name="buscaDeAnimaltableWidget">
                       <property name="minimumSize">
                        <size>
-                        <width>100</width>
-                        <height>50</height>
+                        <width>0</width>
+                        <height>250</height>
                        </size>
                       </property>
                       <property name="maximumSize">
                        <size>
-                        <width>1000</width>
+                        <width>16777215</width>
+                        <height>250</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="0" colspan="3">
+                     <widget class="QFrame" name="frame_9">
+                      <property name="minimumSize">
+                       <size>
+                        <width>150</width>
+                        <height>100</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>1200</width>
                         <height>50</height>
                        </size>
                       </property>
@@ -1727,23 +1442,13 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgb
                        <enum>QFrame::Raised</enum>
                       </property>
                       <layout class="QGridLayout" name="gridLayout_5">
-                       <item row="0" column="0">
-                        <widget class="QCheckBox" name="nascimentoBuscacheckBox">
+                       <item row="1" column="0">
+                        <widget class="QCheckBox" name="vendaBuscacheckBox">
                          <property name="styleSheet">
                           <string notr="true">color: rgb(255, 255, 255);</string>
                          </property>
                          <property name="text">
-                          <string>Nasc</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="1">
-                        <widget class="QCheckBox" name="codChipMaeBuscacheckBox">
-                         <property name="styleSheet">
-                          <string notr="true">color: rgb(255, 255, 255);</string>
-                         </property>
-                         <property name="text">
-                          <string>Mãe</string>
+                          <string>Venda</string>
                          </property>
                         </widget>
                        </item>
@@ -1757,6 +1462,16 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgb
                          </property>
                         </widget>
                        </item>
+                       <item row="1" column="1" colspan="2">
+                        <widget class="QCheckBox" name="compraBuscacheckBox">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Compra</string>
+                         </property>
+                        </widget>
+                       </item>
                        <item row="0" column="3">
                         <widget class="QCheckBox" name="pelagemBuscacheckbox">
                          <property name="styleSheet">
@@ -1764,16 +1479,6 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgb
                          </property>
                          <property name="text">
                           <string>Pelagem</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="4">
-                        <widget class="QCheckBox" name="criadorBuscacheckBox">
-                         <property name="styleSheet">
-                          <string notr="true">color: rgb(255, 255, 255);</string>
-                         </property>
-                         <property name="text">
-                          <string>Criador</string>
                          </property>
                         </widget>
                        </item>
@@ -1787,66 +1492,37 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgb
                          </property>
                         </widget>
                        </item>
-                       <item row="1" column="0">
-                        <widget class="QCheckBox" name="vendaBuscacheckBox">
+                       <item row="0" column="1">
+                        <widget class="QCheckBox" name="codChipMaeBuscacheckBox">
                          <property name="styleSheet">
                           <string notr="true">color: rgb(255, 255, 255);</string>
                          </property>
                          <property name="text">
-                          <string>Venda</string>
+                          <string>Mãe</string>
                          </property>
                         </widget>
                        </item>
-                       <item row="1" column="1" colspan="2">
-                        <widget class="QCheckBox" name="compraBuscacheckBox">
+                       <item row="0" column="0">
+                        <widget class="QCheckBox" name="nascimentoBuscacheckBox">
                          <property name="styleSheet">
                           <string notr="true">color: rgb(255, 255, 255);</string>
                          </property>
                          <property name="text">
-                          <string>Compra</string>
+                          <string>Nasc</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="4">
+                        <widget class="QCheckBox" name="criadorBuscacheckBox">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Criador</string>
                          </property>
                         </widget>
                        </item>
                       </layout>
-                     </widget>
-                    </item>
-                    <item row="3" column="2">
-                     <widget class="QPushButton" name="buscarAnimalpushButton">
-                      <property name="styleSheet">
-                       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));</string>
-                      </property>
-                      <property name="text">
-                       <string>Buscar</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="1">
-                     <widget class="QLineEdit" name="buscaDeAnimallineEdit">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Digite aqui a sua busca</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="0" colspan="3">
-                     <widget class="QTableWidget" name="buscaDeAnimaltableWidget">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>300</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>300</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(255, 255, 255);</string>
-                      </property>
                      </widget>
                     </item>
                    </layout>
@@ -1942,7 +1618,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgb
                       <property name="minimumSize">
                        <size>
                         <width>50</width>
-                        <height>30</height>
+                        <height>50</height>
                        </size>
                       </property>
                       <property name="maximumSize">
@@ -1986,13 +1662,13 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgb
                       <property name="minimumSize">
                        <size>
                         <width>0</width>
-                        <height>300</height>
+                        <height>250</height>
                        </size>
                       </property>
                       <property name="maximumSize">
                        <size>
                         <width>16777215</width>
-                        <height>300</height>
+                        <height>250</height>
                        </size>
                       </property>
                      </widget>
@@ -2096,6 +1772,8 @@ QLabel{
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="Resources/images/SystemImages/dfa.qrc"/>
+ </resources>
  <connections/>
 </ui>

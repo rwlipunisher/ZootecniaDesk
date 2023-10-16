@@ -42,7 +42,7 @@ class InitUserInterfaces(object):
         centralwidget.setObjectName("centralwidget")
         label_3 = QtWidgets.QLabel(parent=centralwidget)
         label_3.setGeometry(QtCore.QRect(40, 50, 611, 601))
-        label_3.setStyleSheet("border-image: url("+self.mainDir+"\Resources\images\SystemImages\initsettingsBG.png);\n"
+        label_3.setStyleSheet("border-image: url(Resources/images/SystemImages/initsettingsBG.png);\n"
         "border-radius:20px;")
         label_3.setText("")
         label_3.setObjectName("label_3")
@@ -211,7 +211,7 @@ class InitUserInterfaces(object):
         centralwidget.setObjectName("centralwidget")
         label = QtWidgets.QLabel(centralwidget)
         label.setGeometry(QtCore.QRect(140, 80, 291, 411))
-        label.setStyleSheet("border-image: url(:/here/initsettingsBG.png);\n"
+        label.setStyleSheet("border-image: url(Resources/images/SystemImages/initsettingsBG.png);\n"
         "border-radius: 20px;")
         label.setText("")
         label.setObjectName("label")
@@ -320,7 +320,7 @@ class InitUserInterfaces(object):
             if dsenha == senha:
                 self.MainWindow.centralWidget().deleteLater()
                 main = MainWindowApp()
-                main.setupUi(self.MainWindow)
+                main.setupUi(self.MainWindow, self.mainDir)
             else: 
                 msg_box = QtWidgets.QMessageBox()
                 msg_box.setWindowTitle("Aviso de Erro!")

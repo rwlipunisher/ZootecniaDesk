@@ -2,14 +2,15 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6.QtCore import Qt
 import sqlite3
-
+from Controller import *
 
 class MainWindowApp():
     
-    def setupUi(self, MainWindow: QMainWindow, mainDatabasePath: str):
-        self.mainDatabasePath = mainDatabasePath
+    def setupUi(self, MainWindow: QMainWindow, mainDir: str):
+        self.mainDir = mainDir
+        self.mainDatabasePath = os.path.join(mainDir+ "\Resources\DataBase\main.db")
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(990, 575)
+        MainWindow.resize(1032, 688)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setStyleSheet("background-color: rgb(25, 25, 25);")
         self.centralwidget.setObjectName("centralwidget")
@@ -167,25 +168,40 @@ class MainWindowApp():
         self.left_menu_top_buttons.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.left_menu_top_buttons.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.left_menu_top_buttons.setObjectName("left_menu_top_buttons")
-        self.formLayout = QtWidgets.QFormLayout(self.left_menu_top_buttons)
-        self.formLayout.setContentsMargins(0, 0, 0, 0)
-        self.formLayout.setSpacing(0)
-        self.formLayout.setObjectName("formLayout")
-        self.cadastrosPushButton = QtWidgets.QPushButton(parent=self.left_menu_top_buttons)
-        self.cadastrosPushButton.setMaximumSize(QtCore.QSize(40, 60))
-        self.cadastrosPushButton.setStyleSheet("background-image: url(:/icons/icons/cil-user.png);\n"
+        self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.left_menu_top_buttons)
+        self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.buscasPushButton = QtWidgets.QPushButton(parent=self.left_menu_top_buttons)
+        self.buscasPushButton.setStyleSheet("background-image: url(:/bgincons/home.png);\n"
 "background-repeat: none;\n"
 "padding-left: 50px;\n"
-"background-position: center left;\n"
+"background-color: rgb(122, 123, 145);\n"
+"background-position: center;\n"
 "color:rgb(255,255,255);")
-        self.cadastrosPushButton.setObjectName("cadastrosPushButton")
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.ItemRole.LabelRole, self.cadastrosPushButton)
-        self.buscasPushButton = QtWidgets.QPushButton(parent=self.left_menu_top_buttons)
+        self.buscasPushButton.setText("")
         self.buscasPushButton.setObjectName("buscasPushButton")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.ItemRole.LabelRole, self.buscasPushButton)
-        self.configuracoesPushButton = QtWidgets.QPushButton(parent=self.left_menu_top_buttons)
-        self.configuracoesPushButton.setObjectName("configuracoesPushButton")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.ItemRole.LabelRole, self.configuracoesPushButton)
+        self.verticalLayout_6.addWidget(self.buscasPushButton)
+        self.configuracoespushButton = QtWidgets.QPushButton(parent=self.left_menu_top_buttons)
+        self.configuracoespushButton.setStyleSheet("background-image: url(:/bgincons/home.png);\n"
+"background-repeat: none;\n"
+"padding-left: 50px;\n"
+"background-position: center;\n"
+"color:rgb(255,255,255);\n"
+"background-color: rgb(122, 123, 145);\n"
+"")
+        self.configuracoespushButton.setText("")
+        self.configuracoespushButton.setObjectName("configuracoespushButton")
+        self.verticalLayout_6.addWidget(self.configuracoespushButton)
+        self.cadastrospushButton = QtWidgets.QPushButton(parent=self.left_menu_top_buttons)
+        self.cadastrospushButton.setStyleSheet("background-image: url(:/bgincons/home.png);\n"
+"background-repeat: none;\n"
+"padding-left: 50px;\n"
+"background-position: center;\n"
+"color:rgb(255,255,255);\n"
+"background-color: rgb(122, 123, 145);\n"
+"")
+        self.cadastrospushButton.setText("")
+        self.cadastrospushButton.setObjectName("cadastrospushButton")
+        self.verticalLayout_6.addWidget(self.cadastrospushButton)
         self.verticalLayout_3.addWidget(self.left_menu_top_buttons)
         self.horizontalLayout.addWidget(self.left_side_menu)
         self.center_main_items = QtWidgets.QFrame(parent=self.main_body)
@@ -200,182 +216,6 @@ class MainWindowApp():
         self.stackedWidget = QtWidgets.QStackedWidget(parent=self.center_main_items)
         self.stackedWidget.setMidLineWidth(0)
         self.stackedWidget.setObjectName("stackedWidget")
-        self.accounts_page = QtWidgets.QWidget()
-        self.accounts_page.setStyleSheet("")
-        self.accounts_page.setObjectName("accounts_page")
-        self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.accounts_page)
-        self.verticalLayout_6.setSpacing(10)
-        self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.login_response_frame = QtWidgets.QFrame(parent=self.accounts_page)
-        self.login_response_frame.setMinimumSize(QtCore.QSize(400, 100))
-        self.login_response_frame.setMaximumSize(QtCore.QSize(600, 300))
-        self.login_response_frame.setStyleSheet("QFrame{    \n"
-"    color: rgb(255, 255, 255);\n"
-"    background-color: rgb(0, 0, 0);\n"
-"    border: 2px solid rgb(0, 69, 116);\n"
-"    border-radius: 20px;\n"
-"}\n"
-"QPushButton{    \n"
-"    color: rgb(255, 255, 255);\n"
-"    background-color: rgb(0, 69, 116);\n"
-"    border: none;\n"
-"    border-radius: 10px;\n"
-"}\n"
-"QLabel{\n"
-"    padding: 10px;\n"
-"    border: none;\n"
-"}")
-        self.login_response_frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.login_response_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.login_response_frame.setObjectName("login_response_frame")
-        self.verticalLayout_11 = QtWidgets.QVBoxLayout(self.login_response_frame)
-        self.verticalLayout_11.setObjectName("verticalLayout_11")
-        self.login_response_msg = QtWidgets.QLabel(parent=self.login_response_frame)
-        font = QtGui.QFont()
-        font.setFamily("Open Sans")
-        self.login_response_msg.setFont(font)
-        self.login_response_msg.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.login_response_msg.setObjectName("login_response_msg")
-        self.verticalLayout_11.addWidget(self.login_response_msg)
-        self.login_res_ok_btn = QtWidgets.QPushButton(parent=self.login_response_frame)
-        self.login_res_ok_btn.setMinimumSize(QtCore.QSize(80, 50))
-        self.login_res_ok_btn.setMaximumSize(QtCore.QSize(80, 50))
-        font = QtGui.QFont()
-        font.setBold(True)
-        self.login_res_ok_btn.setFont(font)
-        self.login_res_ok_btn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.login_res_ok_btn.setObjectName("login_res_ok_btn")
-        self.verticalLayout_11.addWidget(self.login_res_ok_btn, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
-        self.verticalLayout_6.addWidget(self.login_response_frame, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
-        self.login_form_frame = QtWidgets.QFrame(parent=self.accounts_page)
-        self.login_form_frame.setMinimumSize(QtCore.QSize(450, 350))
-        self.login_form_frame.setMaximumSize(QtCore.QSize(450, 350))
-        self.login_form_frame.setStyleSheet("border-radius: 20px;\n"
-"")
-        self.login_form_frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.login_form_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.login_form_frame.setObjectName("login_form_frame")
-        self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.login_form_frame)
-        self.verticalLayout_8.setContentsMargins(0, 10, 0, 10)
-        self.verticalLayout_8.setSpacing(0)
-        self.verticalLayout_8.setObjectName("verticalLayout_8")
-        self.input_fileds_frame = QtWidgets.QFrame(parent=self.login_form_frame)
-        self.input_fileds_frame.setStyleSheet("QFrame{\n"
-"    background-color: rgb(34, 34, 34);\n"
-"    color: rgb(255, 255, 255);\n"
-"    border: 2px solid rgb(1, 90, 153);\n"
-"}\n"
-"QLineEdit {\n"
-"    border: 2px solid rgb(0, 93, 159);\n"
-"    border-radius: 10px;\n"
-"    padding: 15px;\n"
-"    background-color: rgb(0, 69, 116);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QLineEdit:hover {\n"
-"    border: 2px solid rgb(0, 66, 124);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"    border: 2px solid rgb(206, 206, 206);\n"
-"    color: rgb(200, 200, 200);\n"
-"}\n"
-"QPushButton {\n"
-"    border: 2px solid rgb(45, 45, 45);\n"
-"    border-radius: 10px;\n"
-"    padding: 15px;\n"
-"    background-color:rgb(14, 13, 24);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QPushButton:hover {\n"
-"    border: 2px solid rgb(0, 66, 124);\n"
-"}\n"
-"QLabel{\n"
-"    border:3px solid  rgb(45, 45, 45);\n"
-"    border-radius: 10px;\n"
-"    \n"
-"    background-color: rgb(6, 63, 104);\n"
-"}\n"
-"QCheckBox{\n"
-"    color: rgb(255, 255, 255);\n"
-"    padding: 10px;\n"
-"}\n"
-"QCheckBox::indicator {\n"
-"    border: 3px solid rgb(0, 93, 159);\n"
-"    width: 20px;\n"
-"    height: 20px;\n"
-"    border-radius: 10px;\n"
-"    background:rgb(0, 0, 0);\n"
-"}\n"
-"QCheckBox::indicator:hover {\n"
-"    border: 3px solid rgb(255, 255, 255);\n"
-"}\n"
-"QCheckBox::indicator:checked {\n"
-"    background: 3px solid rgb(34, 34, 34);\n"
-"    background-image: url(:/icons/icons/cil-check.png);\n"
-"}")
-        self.input_fileds_frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.input_fileds_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.input_fileds_frame.setObjectName("input_fileds_frame")
-        self.formLayout_2 = QtWidgets.QFormLayout(self.input_fileds_frame)
-        self.formLayout_2.setObjectName("formLayout_2")
-        self.label_2 = QtWidgets.QLabel(parent=self.input_fileds_frame)
-        self.label_2.setMinimumSize(QtCore.QSize(100, 50))
-        font = QtGui.QFont()
-        font.setBold(True)
-        self.label_2.setFont(font)
-        self.label_2.setStyleSheet("")
-        self.label_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label_2.setObjectName("label_2")
-        self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_2)
-        self.username = QtWidgets.QLineEdit(parent=self.input_fileds_frame)
-        self.username.setMinimumSize(QtCore.QSize(200, 50))
-        self.username.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.username.setStyleSheet("border:3px solid  rgb(43, 31, 91);\n"
-"border-radius: 10px;")
-        self.username.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.username.setObjectName("username")
-        self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.ItemRole.FieldRole, self.username)
-        self.label_5 = QtWidgets.QLabel(parent=self.input_fileds_frame)
-        self.label_5.setMinimumSize(QtCore.QSize(100, 50))
-        font = QtGui.QFont()
-        font.setBold(True)
-        self.label_5.setFont(font)
-        self.label_5.setStyleSheet("")
-        self.label_5.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label_5.setObjectName("label_5")
-        self.formLayout_2.setWidget(2, QtWidgets.QFormLayout.ItemRole.LabelRole, self.label_5)
-        self.password = QtWidgets.QLineEdit(parent=self.input_fileds_frame)
-        self.password.setMinimumSize(QtCore.QSize(200, 50))
-        self.password.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.password.setStyleSheet("border:3px solid  rgb(43, 31, 91);\n"
-"border-radius: 10px;")
-        self.password.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
-        self.password.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.password.setObjectName("password")
-        self.formLayout_2.setWidget(2, QtWidgets.QFormLayout.ItemRole.FieldRole, self.password)
-        self.keep_me_logged = QtWidgets.QCheckBox(parent=self.input_fileds_frame)
-        self.keep_me_logged.setObjectName("keep_me_logged")
-        self.formLayout_2.setWidget(3, QtWidgets.QFormLayout.ItemRole.SpanningRole, self.keep_me_logged)
-        self.login_btn = QtWidgets.QPushButton(parent=self.input_fileds_frame)
-        self.login_btn.setMinimumSize(QtCore.QSize(0, 50))
-        self.login_btn.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.login_btn.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.login_btn.setObjectName("login_btn")
-        self.formLayout_2.setWidget(4, QtWidgets.QFormLayout.ItemRole.FieldRole, self.login_btn)
-        self.profile_icon_frame = QtWidgets.QFrame(parent=self.input_fileds_frame)
-        self.profile_icon_frame.setMinimumSize(QtCore.QSize(50, 50))
-        self.profile_icon_frame.setMaximumSize(QtCore.QSize(50, 50))
-        self.profile_icon_frame.setStyleSheet("image: url(:/icons/icons/cil-user-follow.png);\n"
-"background-color: rgb(34, 34, 34);\n"
-"border-radius: 25px;\n"
-"border: 3px solid rgb(0, 93, 159);")
-        self.profile_icon_frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.profile_icon_frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.profile_icon_frame.setObjectName("profile_icon_frame")
-        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.ItemRole.FieldRole, self.profile_icon_frame)
-        self.verticalLayout_8.addWidget(self.input_fileds_frame, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
-        self.verticalLayout_6.addWidget(self.login_form_frame, 0, QtCore.Qt.AlignmentFlag.AlignHCenter|QtCore.Qt.AlignmentFlag.AlignVCenter)
-        self.stackedWidget.addWidget(self.accounts_page)
         self.page = QtWidgets.QWidget()
         self.page.setObjectName("page")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.page)
@@ -386,104 +226,6 @@ class MainWindowApp():
         self.frame_11.setObjectName("frame_11")
         self.gridLayout_10 = QtWidgets.QGridLayout(self.frame_11)
         self.gridLayout_10.setObjectName("gridLayout_10")
-        self.frame_12 = QtWidgets.QFrame(parent=self.frame_11)
-        self.frame_12.setStyleSheet("border: 2px solid rgb(0, 69, 116);\n"
-"border-radius: 20px;")
-        self.frame_12.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_12.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_12.setObjectName("frame_12")
-        self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.frame_12)
-        self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.label_4 = QtWidgets.QLabel(parent=self.frame_12)
-        self.label_4.setStyleSheet("color:rgb(255,255,255);\n"
-"")
-        self.label_4.setObjectName("label_4")
-        self.verticalLayout_7.addWidget(self.label_4)
-        self.AlterarImagemdeAssinaturapushButton = QtWidgets.QPushButton(parent=self.frame_12)
-        self.AlterarImagemdeAssinaturapushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));")
-        self.AlterarImagemdeAssinaturapushButton.setObjectName("AlterarImagemdeAssinaturapushButton")
-        self.verticalLayout_7.addWidget(self.AlterarImagemdeAssinaturapushButton)
-        self.frame_16 = QtWidgets.QFrame(parent=self.frame_12)
-        self.frame_16.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_16.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_16.setObjectName("frame_16")
-        self.verticalLayout_7.addWidget(self.frame_16)
-        self.gridLayout_10.addWidget(self.frame_12, 0, 0, 1, 1)
-        self.frame_13 = QtWidgets.QFrame(parent=self.frame_11)
-        self.frame_13.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_13.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_13.setObjectName("frame_13")
-        self.gridLayout_9 = QtWidgets.QGridLayout(self.frame_13)
-        self.gridLayout_9.setObjectName("gridLayout_9")
-        self.label_10 = QtWidgets.QLabel(parent=self.frame_13)
-        self.label_10.setStyleSheet("color:rgb(255,255,255);\n"
-"")
-        self.label_10.setObjectName("label_10")
-        self.gridLayout_9.addWidget(self.label_10, 0, 1, 1, 1)
-        self.nomePerfilAcessolineEdit = QtWidgets.QLineEdit(parent=self.frame_13)
-        self.nomePerfilAcessolineEdit.setStyleSheet("color: rgb(255,255,255);")
-        self.nomePerfilAcessolineEdit.setText("")
-        self.nomePerfilAcessolineEdit.setObjectName("nomePerfilAcessolineEdit")
-        self.gridLayout_9.addWidget(self.nomePerfilAcessolineEdit, 1, 0, 1, 1)
-        self.cpfPerfilAcessolineEdit = QtWidgets.QLineEdit(parent=self.frame_13)
-        self.cpfPerfilAcessolineEdit.setStyleSheet("color: rgb(255,255,255);")
-        self.cpfPerfilAcessolineEdit.setText("")
-        self.cpfPerfilAcessolineEdit.setObjectName("cpfPerfilAcessolineEdit")
-        self.gridLayout_9.addWidget(self.cpfPerfilAcessolineEdit, 1, 1, 1, 1)
-        self.nomeUsuarioPerfilAcessolineEdit = QtWidgets.QLineEdit(parent=self.frame_13)
-        self.nomeUsuarioPerfilAcessolineEdit.setStyleSheet("color: rgb(255,255,255);")
-        self.nomeUsuarioPerfilAcessolineEdit.setObjectName("nomeUsuarioPerfilAcessolineEdit")
-        self.gridLayout_9.addWidget(self.nomeUsuarioPerfilAcessolineEdit, 1, 2, 1, 1)
-        self.cpfPerfilAcessolineEdit_2 = QtWidgets.QLineEdit(parent=self.frame_13)
-        self.cpfPerfilAcessolineEdit_2.setStyleSheet("color: rgb(255,255,255);")
-        self.cpfPerfilAcessolineEdit_2.setObjectName("cpfPerfilAcessolineEdit_2")
-        self.gridLayout_9.addWidget(self.cpfPerfilAcessolineEdit_2, 2, 0, 1, 1)
-        self.cpfOuCnpjPerfilAcessolineEdit = QtWidgets.QLineEdit(parent=self.frame_13)
-        self.cpfOuCnpjPerfilAcessolineEdit.setStyleSheet("color: rgb(255,255,255);")
-        self.cpfOuCnpjPerfilAcessolineEdit.setText("")
-        self.cpfOuCnpjPerfilAcessolineEdit.setObjectName("cpfOuCnpjPerfilAcessolineEdit")
-        self.gridLayout_9.addWidget(self.cpfOuCnpjPerfilAcessolineEdit, 2, 1, 1, 1)
-        self.senhaPerfilAcessolineEdit = QtWidgets.QLineEdit(parent=self.frame_13)
-        self.senhaPerfilAcessolineEdit.setStyleSheet("color: rgb(255,255,255);")
-        self.senhaPerfilAcessolineEdit.setObjectName("senhaPerfilAcessolineEdit")
-        self.gridLayout_9.addWidget(self.senhaPerfilAcessolineEdit, 2, 2, 1, 1)
-        self.nascimentoPerfilAcessolineEdit = QtWidgets.QLineEdit(parent=self.frame_13)
-        self.nascimentoPerfilAcessolineEdit.setStyleSheet("color: rgb(255,255,255);")
-        self.nascimentoPerfilAcessolineEdit.setObjectName("nascimentoPerfilAcessolineEdit")
-        self.gridLayout_9.addWidget(self.nascimentoPerfilAcessolineEdit, 3, 0, 1, 1)
-        self.criadorPerfilAcessocheckBox = QtWidgets.QCheckBox(parent=self.frame_13)
-        self.criadorPerfilAcessocheckBox.setStyleSheet("color:rgb(255,255,255);")
-        self.criadorPerfilAcessocheckBox.setObjectName("criadorPerfilAcessocheckBox")
-        self.gridLayout_9.addWidget(self.criadorPerfilAcessocheckBox, 3, 1, 1, 1)
-        self.senhaPerfilAcessocheckBox = QtWidgets.QCheckBox(parent=self.frame_13)
-        self.senhaPerfilAcessocheckBox.setStyleSheet("color:rgb(255,255,255);")
-        self.senhaPerfilAcessocheckBox.setObjectName("senhaPerfilAcessocheckBox")
-        self.gridLayout_9.addWidget(self.senhaPerfilAcessocheckBox, 3, 2, 1, 1)
-        self.alterarAcessosPerfilAcessospushButton = QtWidgets.QPushButton(parent=self.frame_13)
-        self.alterarAcessosPerfilAcessospushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));")
-        self.alterarAcessosPerfilAcessospushButton.setObjectName("alterarAcessosPerfilAcessospushButton")
-        self.gridLayout_9.addWidget(self.alterarAcessosPerfilAcessospushButton, 4, 1, 1, 1)
-        self.gridLayout_10.addWidget(self.frame_13, 1, 0, 1, 2)
-        self.frame_15 = QtWidgets.QFrame(parent=self.frame_11)
-        self.frame_15.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_15.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_15.setObjectName("frame_15")
-        self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.frame_15)
-        self.verticalLayout_13.setObjectName("verticalLayout_13")
-        self.label_12 = QtWidgets.QLabel(parent=self.frame_15)
-        self.label_12.setStyleSheet("color:rgb(255,255,255);\n"
-"")
-        self.label_12.setObjectName("label_12")
-        self.verticalLayout_13.addWidget(self.label_12)
-        self.backupAssocialpushButton = QtWidgets.QPushButton(parent=self.frame_15)
-        self.backupAssocialpushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));")
-        self.backupAssocialpushButton.setObjectName("backupAssocialpushButton")
-        self.verticalLayout_13.addWidget(self.backupAssocialpushButton)
-        self.backupSeguranapushButton = QtWidgets.QPushButton(parent=self.frame_15)
-        self.backupSeguranapushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));")
-        self.backupSeguranapushButton.setObjectName("backupSeguranapushButton")
-        self.verticalLayout_13.addWidget(self.backupSeguranapushButton)
-        self.gridLayout_10.addWidget(self.frame_15, 1, 2, 1, 1)
         self.frame_14 = QtWidgets.QFrame(parent=self.frame_11)
         self.frame_14.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_14.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -562,6 +304,113 @@ class MainWindowApp():
         self.label_11.setObjectName("label_11")
         self.formLayout_3.setWidget(0, QtWidgets.QFormLayout.ItemRole.SpanningRole, self.label_11)
         self.gridLayout_10.addWidget(self.frame_14, 0, 1, 1, 2)
+        self.frame_15 = QtWidgets.QFrame(parent=self.frame_11)
+        self.frame_15.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_15.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_15.setObjectName("frame_15")
+        self.gridLayout_11 = QtWidgets.QGridLayout(self.frame_15)
+        self.gridLayout_11.setObjectName("gridLayout_11")
+        self.backupSeguranapushButton = QtWidgets.QPushButton(parent=self.frame_15)
+        self.backupSeguranapushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));")
+        self.backupSeguranapushButton.setObjectName("backupSeguranapushButton")
+        self.gridLayout_11.addWidget(self.backupSeguranapushButton, 7, 0, 1, 1)
+        self.label_12 = QtWidgets.QLabel(parent=self.frame_15)
+        self.label_12.setMinimumSize(QtCore.QSize(0, 20))
+        self.label_12.setMaximumSize(QtCore.QSize(16777215, 2))
+        self.label_12.setStyleSheet("color:rgb(255,255,255);\n"
+"")
+        self.label_12.setObjectName("label_12")
+        self.gridLayout_11.addWidget(self.label_12, 2, 0, 1, 1)
+        self.backupAssocialpushButton = QtWidgets.QPushButton(parent=self.frame_15)
+        self.backupAssocialpushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));")
+        self.backupAssocialpushButton.setObjectName("backupAssocialpushButton")
+        self.gridLayout_11.addWidget(self.backupAssocialpushButton, 6, 0, 1, 1)
+        self.selectMainDirpushButton = QtWidgets.QPushButton(parent=self.frame_15)
+        self.selectMainDirpushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));")
+        self.selectMainDirpushButton.setObjectName("selectMainDirpushButton")
+        self.gridLayout_11.addWidget(self.selectMainDirpushButton, 4, 0, 1, 1)
+        self.gridLayout_10.addWidget(self.frame_15, 1, 2, 1, 1)
+        self.frame_13 = QtWidgets.QFrame(parent=self.frame_11)
+        self.frame_13.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_13.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_13.setObjectName("frame_13")
+        self.gridLayout_9 = QtWidgets.QGridLayout(self.frame_13)
+        self.gridLayout_9.setObjectName("gridLayout_9")
+        self.nomePerfilAcessolineEdit = QtWidgets.QLineEdit(parent=self.frame_13)
+        self.nomePerfilAcessolineEdit.setStyleSheet("color: rgb(255,255,255);")
+        self.nomePerfilAcessolineEdit.setText("")
+        self.nomePerfilAcessolineEdit.setObjectName("nomePerfilAcessolineEdit")
+        self.gridLayout_9.addWidget(self.nomePerfilAcessolineEdit, 1, 0, 1, 1)
+        self.cpfPerfilAcessolineEdit = QtWidgets.QLineEdit(parent=self.frame_13)
+        self.cpfPerfilAcessolineEdit.setStyleSheet("color: rgb(255,255,255);")
+        self.cpfPerfilAcessolineEdit.setText("")
+        self.cpfPerfilAcessolineEdit.setObjectName("cpfPerfilAcessolineEdit")
+        self.gridLayout_9.addWidget(self.cpfPerfilAcessolineEdit, 1, 1, 1, 1)
+        self.nascimentoPerfilAcessolineEdit = QtWidgets.QLineEdit(parent=self.frame_13)
+        self.nascimentoPerfilAcessolineEdit.setStyleSheet("color: rgb(255,255,255);")
+        self.nascimentoPerfilAcessolineEdit.setObjectName("nascimentoPerfilAcessolineEdit")
+        self.gridLayout_9.addWidget(self.nascimentoPerfilAcessolineEdit, 3, 0, 1, 1)
+        self.senhaPerfilAcessocheckBox = QtWidgets.QCheckBox(parent=self.frame_13)
+        self.senhaPerfilAcessocheckBox.setStyleSheet("color:rgb(255,255,255);")
+        self.senhaPerfilAcessocheckBox.setObjectName("senhaPerfilAcessocheckBox")
+        self.gridLayout_9.addWidget(self.senhaPerfilAcessocheckBox, 3, 2, 1, 1)
+        self.cpfOuCnpjPerfilAcessolineEdit = QtWidgets.QLineEdit(parent=self.frame_13)
+        self.cpfOuCnpjPerfilAcessolineEdit.setStyleSheet("color: rgb(255,255,255);")
+        self.cpfOuCnpjPerfilAcessolineEdit.setText("")
+        self.cpfOuCnpjPerfilAcessolineEdit.setObjectName("cpfOuCnpjPerfilAcessolineEdit")
+        self.gridLayout_9.addWidget(self.cpfOuCnpjPerfilAcessolineEdit, 2, 1, 1, 1)
+        self.cpfPerfilAcessolineEdit_2 = QtWidgets.QLineEdit(parent=self.frame_13)
+        self.cpfPerfilAcessolineEdit_2.setStyleSheet("color: rgb(255,255,255);")
+        self.cpfPerfilAcessolineEdit_2.setObjectName("cpfPerfilAcessolineEdit_2")
+        self.gridLayout_9.addWidget(self.cpfPerfilAcessolineEdit_2, 2, 0, 1, 1)
+        self.alterarAcessosPerfilAcessospushButton = QtWidgets.QPushButton(parent=self.frame_13)
+        self.alterarAcessosPerfilAcessospushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));")
+        self.alterarAcessosPerfilAcessospushButton.setObjectName("alterarAcessosPerfilAcessospushButton")
+        self.gridLayout_9.addWidget(self.alterarAcessosPerfilAcessospushButton, 4, 1, 1, 1)
+        self.senhaPerfilAcessolineEdit = QtWidgets.QLineEdit(parent=self.frame_13)
+        self.senhaPerfilAcessolineEdit.setStyleSheet("color: rgb(255,255,255);")
+        self.senhaPerfilAcessolineEdit.setObjectName("senhaPerfilAcessolineEdit")
+        self.gridLayout_9.addWidget(self.senhaPerfilAcessolineEdit, 2, 2, 1, 1)
+        self.nomeUsuarioPerfilAcessolineEdit = QtWidgets.QLineEdit(parent=self.frame_13)
+        self.nomeUsuarioPerfilAcessolineEdit.setStyleSheet("color: rgb(255,255,255);")
+        self.nomeUsuarioPerfilAcessolineEdit.setObjectName("nomeUsuarioPerfilAcessolineEdit")
+        self.gridLayout_9.addWidget(self.nomeUsuarioPerfilAcessolineEdit, 1, 2, 1, 1)
+        self.criadorPerfilAcessocheckBox = QtWidgets.QCheckBox(parent=self.frame_13)
+        self.criadorPerfilAcessocheckBox.setStyleSheet("color:rgb(255,255,255);")
+        self.criadorPerfilAcessocheckBox.setObjectName("criadorPerfilAcessocheckBox")
+        self.gridLayout_9.addWidget(self.criadorPerfilAcessocheckBox, 3, 1, 1, 1)
+        self.label_10 = QtWidgets.QLabel(parent=self.frame_13)
+        self.label_10.setMinimumSize(QtCore.QSize(0, 20))
+        self.label_10.setMaximumSize(QtCore.QSize(16777215, 20))
+        self.label_10.setStyleSheet("color:rgb(255,255,255);\n"
+"")
+        self.label_10.setObjectName("label_10")
+        self.gridLayout_9.addWidget(self.label_10, 0, 0, 1, 3)
+        self.gridLayout_10.addWidget(self.frame_13, 1, 0, 1, 2)
+        self.frame_12 = QtWidgets.QFrame(parent=self.frame_11)
+        self.frame_12.setStyleSheet("border-radius: 20px;")
+        self.frame_12.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_12.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_12.setObjectName("frame_12")
+        self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.frame_12)
+        self.verticalLayout_7.setObjectName("verticalLayout_7")
+        self.label_4 = QtWidgets.QLabel(parent=self.frame_12)
+        self.label_4.setMinimumSize(QtCore.QSize(0, 20))
+        self.label_4.setMaximumSize(QtCore.QSize(16777215, 20))
+        self.label_4.setStyleSheet("color:rgb(255,255,255);\n"
+"")
+        self.label_4.setObjectName("label_4")
+        self.verticalLayout_7.addWidget(self.label_4)
+        self.frame_16 = QtWidgets.QFrame(parent=self.frame_12)
+        self.frame_16.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_16.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_16.setObjectName("frame_16")
+        self.verticalLayout_7.addWidget(self.frame_16)
+        self.AlterarImagemdeAssinaturapushButton = QtWidgets.QPushButton(parent=self.frame_12)
+        self.AlterarImagemdeAssinaturapushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));")
+        self.AlterarImagemdeAssinaturapushButton.setObjectName("AlterarImagemdeAssinaturapushButton")
+        self.verticalLayout_7.addWidget(self.AlterarImagemdeAssinaturapushButton)
+        self.gridLayout_10.addWidget(self.frame_12, 0, 0, 1, 1)
         self.verticalLayout_4.addWidget(self.frame_11)
         self.stackedWidget.addWidget(self.page)
         self.settings_page = QtWidgets.QWidget()
@@ -738,6 +587,14 @@ class MainWindowApp():
         self.criterioBuscaComboBox.addItem("")
         self.criterioBuscaComboBox.addItem("")
         self.gridLayout_3.addWidget(self.criterioBuscaComboBox, 3, 0, 1, 1)
+        self.buscarAnimalpushButton = QtWidgets.QPushButton(parent=self.frame)
+        self.buscarAnimalpushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));")
+        self.buscarAnimalpushButton.setObjectName("buscarAnimalpushButton")
+        self.gridLayout_3.addWidget(self.buscarAnimalpushButton, 3, 2, 1, 1)
+        self.buscaDeAnimallineEdit = QtWidgets.QLineEdit(parent=self.frame)
+        self.buscaDeAnimallineEdit.setStyleSheet("color: rgb(255, 255, 255);")
+        self.buscaDeAnimallineEdit.setObjectName("buscaDeAnimallineEdit")
+        self.gridLayout_3.addWidget(self.buscaDeAnimallineEdit, 3, 1, 1, 1)
         self.label = QtWidgets.QLabel(parent=self.frame)
         self.label.setMinimumSize(QtCore.QSize(200, 20))
         self.label.setMaximumSize(QtCore.QSize(100, 20))
@@ -748,63 +605,55 @@ class MainWindowApp():
         self.label.setStyleSheet("color: rgb(255, 255, 255);")
         self.label.setObjectName("label")
         self.gridLayout_3.addWidget(self.label, 0, 0, 1, 1)
-        self.frame_9 = QtWidgets.QFrame(parent=self.frame)
-        self.frame_9.setMinimumSize(QtCore.QSize(100, 50))
-        self.frame_9.setMaximumSize(QtCore.QSize(1000, 50))
-        self.frame_9.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_9.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_9.setObjectName("frame_9")
-        self.gridLayout_5 = QtWidgets.QGridLayout(self.frame_9)
-        self.gridLayout_5.setObjectName("gridLayout_5")
-        self.nascimentoBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
-        self.nascimentoBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
-        self.nascimentoBuscacheckBox.setObjectName("nascimentoBuscacheckBox")
-        self.gridLayout_5.addWidget(self.nascimentoBuscacheckBox, 0, 0, 1, 1)
-        self.codChipMaeBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
-        self.codChipMaeBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
-        self.codChipMaeBuscacheckBox.setObjectName("codChipMaeBuscacheckBox")
-        self.gridLayout_5.addWidget(self.codChipMaeBuscacheckBox, 0, 1, 1, 1)
-        self.codChipPaiBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
-        self.codChipPaiBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
-        self.codChipPaiBuscacheckBox.setObjectName("codChipPaiBuscacheckBox")
-        self.gridLayout_5.addWidget(self.codChipPaiBuscacheckBox, 0, 2, 1, 1)
-        self.pelagemBuscacheckbox = QtWidgets.QCheckBox(parent=self.frame_9)
-        self.pelagemBuscacheckbox.setStyleSheet("color: rgb(255, 255, 255);")
-        self.pelagemBuscacheckbox.setObjectName("pelagemBuscacheckbox")
-        self.gridLayout_5.addWidget(self.pelagemBuscacheckbox, 0, 3, 1, 1)
-        self.criadorBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
-        self.criadorBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
-        self.criadorBuscacheckBox.setObjectName("criadorBuscacheckBox")
-        self.gridLayout_5.addWidget(self.criadorBuscacheckBox, 0, 4, 1, 1)
-        self.proprietarioBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
-        self.proprietarioBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
-        self.proprietarioBuscacheckBox.setObjectName("proprietarioBuscacheckBox")
-        self.gridLayout_5.addWidget(self.proprietarioBuscacheckBox, 0, 5, 1, 1)
-        self.vendaBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
-        self.vendaBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
-        self.vendaBuscacheckBox.setObjectName("vendaBuscacheckBox")
-        self.gridLayout_5.addWidget(self.vendaBuscacheckBox, 1, 0, 1, 1)
-        self.compraBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
-        self.compraBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
-        self.compraBuscacheckBox.setObjectName("compraBuscacheckBox")
-        self.gridLayout_5.addWidget(self.compraBuscacheckBox, 1, 1, 1, 2)
-        self.gridLayout_3.addWidget(self.frame_9, 4, 0, 1, 3)
-        self.buscarAnimalpushButton = QtWidgets.QPushButton(parent=self.frame)
-        self.buscarAnimalpushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(255, 255, 255, 140));")
-        self.buscarAnimalpushButton.setObjectName("buscarAnimalpushButton")
-        self.gridLayout_3.addWidget(self.buscarAnimalpushButton, 3, 2, 1, 1)
-        self.buscaDeAnimallineEdit = QtWidgets.QLineEdit(parent=self.frame)
-        self.buscaDeAnimallineEdit.setStyleSheet("color: rgb(255, 255, 255);")
-        self.buscaDeAnimallineEdit.setObjectName("buscaDeAnimallineEdit")
-        self.gridLayout_3.addWidget(self.buscaDeAnimallineEdit, 3, 1, 1, 1)
         self.buscaDeAnimaltableWidget = QtWidgets.QTableWidget(parent=self.frame)
-        self.buscaDeAnimaltableWidget.setMinimumSize(QtCore.QSize(0, 300))
-        self.buscaDeAnimaltableWidget.setMaximumSize(QtCore.QSize(16777215, 300))
+        self.buscaDeAnimaltableWidget.setMinimumSize(QtCore.QSize(0, 250))
+        self.buscaDeAnimaltableWidget.setMaximumSize(QtCore.QSize(16777215, 250))
         self.buscaDeAnimaltableWidget.setStyleSheet("color: rgb(255, 255, 255);")
         self.buscaDeAnimaltableWidget.setObjectName("buscaDeAnimaltableWidget")
         self.buscaDeAnimaltableWidget.setColumnCount(0)
         self.buscaDeAnimaltableWidget.setRowCount(0)
         self.gridLayout_3.addWidget(self.buscaDeAnimaltableWidget, 5, 0, 1, 3)
+        self.frame_9 = QtWidgets.QFrame(parent=self.frame)
+        self.frame_9.setMinimumSize(QtCore.QSize(150, 100))
+        self.frame_9.setMaximumSize(QtCore.QSize(1200, 50))
+        self.frame_9.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_9.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_9.setObjectName("frame_9")
+        self.gridLayout_5 = QtWidgets.QGridLayout(self.frame_9)
+        self.gridLayout_5.setObjectName("gridLayout_5")
+        self.vendaBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
+        self.vendaBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
+        self.vendaBuscacheckBox.setObjectName("vendaBuscacheckBox")
+        self.gridLayout_5.addWidget(self.vendaBuscacheckBox, 1, 0, 1, 1)
+        self.codChipPaiBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
+        self.codChipPaiBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
+        self.codChipPaiBuscacheckBox.setObjectName("codChipPaiBuscacheckBox")
+        self.gridLayout_5.addWidget(self.codChipPaiBuscacheckBox, 0, 2, 1, 1)
+        self.compraBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
+        self.compraBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
+        self.compraBuscacheckBox.setObjectName("compraBuscacheckBox")
+        self.gridLayout_5.addWidget(self.compraBuscacheckBox, 1, 1, 1, 2)
+        self.pelagemBuscacheckbox = QtWidgets.QCheckBox(parent=self.frame_9)
+        self.pelagemBuscacheckbox.setStyleSheet("color: rgb(255, 255, 255);")
+        self.pelagemBuscacheckbox.setObjectName("pelagemBuscacheckbox")
+        self.gridLayout_5.addWidget(self.pelagemBuscacheckbox, 0, 3, 1, 1)
+        self.proprietarioBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
+        self.proprietarioBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
+        self.proprietarioBuscacheckBox.setObjectName("proprietarioBuscacheckBox")
+        self.gridLayout_5.addWidget(self.proprietarioBuscacheckBox, 0, 5, 1, 1)
+        self.codChipMaeBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
+        self.codChipMaeBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
+        self.codChipMaeBuscacheckBox.setObjectName("codChipMaeBuscacheckBox")
+        self.gridLayout_5.addWidget(self.codChipMaeBuscacheckBox, 0, 1, 1, 1)
+        self.nascimentoBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
+        self.nascimentoBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
+        self.nascimentoBuscacheckBox.setObjectName("nascimentoBuscacheckBox")
+        self.gridLayout_5.addWidget(self.nascimentoBuscacheckBox, 0, 0, 1, 1)
+        self.criadorBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
+        self.criadorBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
+        self.criadorBuscacheckBox.setObjectName("criadorBuscacheckBox")
+        self.gridLayout_5.addWidget(self.criadorBuscacheckBox, 0, 4, 1, 1)
+        self.gridLayout_3.addWidget(self.frame_9, 4, 0, 1, 3)
         self.horizontalLayout_8.addWidget(self.frame)
         self.frame_7 = QtWidgets.QFrame(parent=self.frame_6)
         self.frame_7.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
@@ -840,7 +689,7 @@ class MainWindowApp():
         self.buscarTerceiropushButton.setObjectName("buscarTerceiropushButton")
         self.gridLayout_4.addWidget(self.buscarTerceiropushButton, 1, 2, 1, 1)
         self.frame_10 = QtWidgets.QFrame(parent=self.frame_7)
-        self.frame_10.setMinimumSize(QtCore.QSize(50, 30))
+        self.frame_10.setMinimumSize(QtCore.QSize(50, 50))
         self.frame_10.setMaximumSize(QtCore.QSize(500, 30))
         self.frame_10.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_10.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
@@ -857,8 +706,8 @@ class MainWindowApp():
         self.gridLayout_6.addWidget(self.observacoesTerceirocheckBox, 0, 1, 1, 1)
         self.gridLayout_4.addWidget(self.frame_10, 2, 0, 1, 3)
         self.tableView = QtWidgets.QTableView(parent=self.frame_7)
-        self.tableView.setMinimumSize(QtCore.QSize(0, 300))
-        self.tableView.setMaximumSize(QtCore.QSize(16777215, 300))
+        self.tableView.setMinimumSize(QtCore.QSize(0, 250))
+        self.tableView.setMaximumSize(QtCore.QSize(16777215, 250))
         self.tableView.setObjectName("tableView")
         self.gridLayout_4.addWidget(self.tableView, 3, 0, 1, 3)
         self.horizontalLayout_8.addWidget(self.frame_7)
@@ -906,35 +755,6 @@ class MainWindowApp():
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_6.setText(_translate("MainWindow", "Painel Administrativo"))
-        self.cadastrosPushButton.setText(_translate("MainWindow", "Cadastros"))
-        self.buscasPushButton.setText(_translate("MainWindow", "Busca"))
-        self.configuracoesPushButton.setText(_translate("MainWindow", "Config"))
-        self.login_response_msg.setText(_translate("MainWindow", "Login Response Msg"))
-        self.login_res_ok_btn.setText(_translate("MainWindow", "Ok"))
-        self.label_2.setText(_translate("MainWindow", "Username"))
-        self.username.setPlaceholderText(_translate("MainWindow", "Username"))
-        self.label_5.setText(_translate("MainWindow", "Password"))
-        self.password.setPlaceholderText(_translate("MainWindow", "Password"))
-        self.keep_me_logged.setText(_translate("MainWindow", "Keep me logged in"))
-        self.login_btn.setText(_translate("MainWindow", "Login"))
-        self.label_4.setText(_translate("MainWindow", "Imagem de Assinatura"))
-        self.AlterarImagemdeAssinaturapushButton.setText(_translate("MainWindow", "Alterar Imagem de Assinatura"))
-        self.label_10.setText(_translate("MainWindow", "Perfil de Acesso"))
-        self.nomePerfilAcessolineEdit.setPlaceholderText(_translate("MainWindow", "Nome"))
-        self.cpfPerfilAcessolineEdit.setPlaceholderText(_translate("MainWindow", "Nome Empresarial"))
-        self.nomeUsuarioPerfilAcessolineEdit.setText(_translate("MainWindow", "Nome de Usuario"))
-        self.nomeUsuarioPerfilAcessolineEdit.setPlaceholderText(_translate("MainWindow", "Nome Empresarial"))
-        self.cpfPerfilAcessolineEdit_2.setPlaceholderText(_translate("MainWindow", "CPF"))
-        self.cpfOuCnpjPerfilAcessolineEdit.setPlaceholderText(_translate("MainWindow", "CPF ou CNPJ"))
-        self.senhaPerfilAcessolineEdit.setText(_translate("MainWindow", "Senha"))
-        self.senhaPerfilAcessolineEdit.setPlaceholderText(_translate("MainWindow", "Nome Empresarial"))
-        self.nascimentoPerfilAcessolineEdit.setPlaceholderText(_translate("MainWindow", "Nascimento"))
-        self.criadorPerfilAcessocheckBox.setText(_translate("MainWindow", "Criador"))
-        self.senhaPerfilAcessocheckBox.setText(_translate("MainWindow", "Sem-Senha"))
-        self.alterarAcessosPerfilAcessospushButton.setText(_translate("MainWindow", "Alterar Acessos"))
-        self.label_12.setText(_translate("MainWindow", "Fazer back up"))
-        self.backupAssocialpushButton.setText(_translate("MainWindow", "Backup Associação"))
-        self.backupSeguranapushButton.setText(_translate("MainWindow", "Backup Segurança"))
         self.label_13.setText(_translate("MainWindow", "Importação de Animais"))
         self.arquivo.setPlaceholderText(_translate("MainWindow", "Nome"))
         self.importarAnimaispushButton.setText(_translate("MainWindow", "Importar!"))
@@ -948,6 +768,25 @@ class MainWindowApp():
         self.importarTerceirospushButton.setText(_translate("MainWindow", "Importar!"))
         self.label_14.setText(_translate("MainWindow", "Importação de Terceiros"))
         self.label_11.setText(_translate("MainWindow", "Importação de Dados"))
+        self.backupSeguranapushButton.setText(_translate("MainWindow", "Backup Segurança"))
+        self.label_12.setText(_translate("MainWindow", "Gerenciar Dados"))
+        self.backupAssocialpushButton.setText(_translate("MainWindow", "Backup Associação"))
+        self.selectMainDirpushButton.setText(_translate("MainWindow", "Diretorio de Dados"))
+        self.nomePerfilAcessolineEdit.setPlaceholderText(_translate("MainWindow", "Nome"))
+        self.cpfPerfilAcessolineEdit.setPlaceholderText(_translate("MainWindow", "Nome Empresarial"))
+        self.nascimentoPerfilAcessolineEdit.setPlaceholderText(_translate("MainWindow", "Nascimento"))
+        self.senhaPerfilAcessocheckBox.setText(_translate("MainWindow", "Sem-Senha"))
+        self.cpfOuCnpjPerfilAcessolineEdit.setPlaceholderText(_translate("MainWindow", "CPF ou CNPJ"))
+        self.cpfPerfilAcessolineEdit_2.setPlaceholderText(_translate("MainWindow", "CPF"))
+        self.alterarAcessosPerfilAcessospushButton.setText(_translate("MainWindow", "Alterar Acessos"))
+        self.senhaPerfilAcessolineEdit.setText(_translate("MainWindow", "Senha"))
+        self.senhaPerfilAcessolineEdit.setPlaceholderText(_translate("MainWindow", "Nome Empresarial"))
+        self.nomeUsuarioPerfilAcessolineEdit.setText(_translate("MainWindow", "Nome de Usuario"))
+        self.nomeUsuarioPerfilAcessolineEdit.setPlaceholderText(_translate("MainWindow", "Nome Empresarial"))
+        self.criadorPerfilAcessocheckBox.setText(_translate("MainWindow", "Criador"))
+        self.label_10.setText(_translate("MainWindow", "Perfil de Acesso"))
+        self.label_4.setText(_translate("MainWindow", "Imagem de Assinatura"))
+        self.AlterarImagemdeAssinaturapushButton.setText(_translate("MainWindow", "Alterar Imagem de Assinatura"))
         self.label_8.setText(_translate("MainWindow", "Cadastrar Novo Terceiro"))
         self.nomeTerceiroEdit.setPlaceholderText(_translate("MainWindow", "Nome Completo"))
         self.contatoTerceiroEdit.setPlaceholderText(_translate("MainWindow", "Contatos"))
@@ -981,17 +820,17 @@ class MainWindowApp():
         self.criterioBuscaComboBox.setItemText(6, _translate("MainWindow", "Proprietario"))
         self.criterioBuscaComboBox.setItemText(7, _translate("MainWindow", "Preço de Compra"))
         self.criterioBuscaComboBox.setItemText(8, _translate("MainWindow", "Preço de Venda"))
-        self.label.setText(_translate("MainWindow", "Busca de Animais"))
-        self.nascimentoBuscacheckBox.setText(_translate("MainWindow", "Nasc"))
-        self.codChipMaeBuscacheckBox.setText(_translate("MainWindow", "Mãe"))
-        self.codChipPaiBuscacheckBox.setText(_translate("MainWindow", "Pai"))
-        self.pelagemBuscacheckbox.setText(_translate("MainWindow", "Pelagem"))
-        self.criadorBuscacheckBox.setText(_translate("MainWindow", "Criador"))
-        self.proprietarioBuscacheckBox.setText(_translate("MainWindow", "Proprietario"))
-        self.vendaBuscacheckBox.setText(_translate("MainWindow", "Venda"))
-        self.compraBuscacheckBox.setText(_translate("MainWindow", "Compra"))
         self.buscarAnimalpushButton.setText(_translate("MainWindow", "Buscar"))
         self.buscaDeAnimallineEdit.setPlaceholderText(_translate("MainWindow", "Digite aqui a sua busca"))
+        self.label.setText(_translate("MainWindow", "Busca de Animais"))
+        self.vendaBuscacheckBox.setText(_translate("MainWindow", "Venda"))
+        self.codChipPaiBuscacheckBox.setText(_translate("MainWindow", "Pai"))
+        self.compraBuscacheckBox.setText(_translate("MainWindow", "Compra"))
+        self.pelagemBuscacheckbox.setText(_translate("MainWindow", "Pelagem"))
+        self.proprietarioBuscacheckBox.setText(_translate("MainWindow", "Proprietario"))
+        self.codChipMaeBuscacheckBox.setText(_translate("MainWindow", "Mãe"))
+        self.nascimentoBuscacheckBox.setText(_translate("MainWindow", "Nasc"))
+        self.criadorBuscacheckBox.setText(_translate("MainWindow", "Criador"))
         self.label_9.setText(_translate("MainWindow", "Busca de Terceiros"))
         self.criterioBuscaTerceirocomboBox.setItemText(0, _translate("MainWindow", "Criterio"))
         self.criterioBuscaTerceirocomboBox.setItemText(1, _translate("MainWindow", "CPF"))
@@ -1003,9 +842,14 @@ class MainWindowApp():
         self.observacoesTerceirocheckBox.setText(_translate("MainWindow", "Observações"))
         self.label_7.setText(_translate("MainWindow", "v 1.0"))
 
+        
+        
+        
+        #Inicio das atribuições de ação
         self.foto1Animallabel.mousePressEvent = self.set_background_label
-        self.cadastrosPushButton.clicked.connect(self.goToAnimaisCadastro)
-        self.configuracoesPushButton.clicked.connect(self.goToConfiguracoes)
+        self.selectMainDirpushButton.clicked.connect(self.select_or_create_directory)
+        self.cadastrospushButton.clicked.connect(self.goToAnimaisCadastro)
+        self.configuracoespushButton.clicked.connect(self.goToConfiguracoes)
         self.buscasPushButton.clicked.connect(self.goToRelatorios)
         self.closeButton.clicked.connect(QApplication.quit)
         self.salvarAnimalpushButton.clicked.connect(self.salvarAnimais)
@@ -1016,49 +860,108 @@ class MainWindowApp():
 
 
     def goToAnimaisCadastro(self):
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
     
     def goToRelatorios(self):
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
     def goToConfiguracoes(self):
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(1)
 
 
     def salvarAnimais(self):
         print("Salvando novo Animal")
+
         #checkagem de campos
-        saveCommandSql =f'''INSERT INTO animais_data (codChip, nomeAnimal, nascimento, CodChipMae, codChipPai, pelagem, preco_compra, preco_venda, cpfProprietario, cpfCriador, tipoSanquineo ) VALUES ( '{self.codChipEdit.text()}' , '{self.nomeEdit.text()}', '{self.nascimentoEdit.text()}', '{self.codChipMaeEdit.text()}, {self.codChipPaiEdit.text()}, {self.pelagemEdit.text()}, {self.precoCompraEdit.text()}, {self.precoVendaEdit.text()}', '{self.cpfProprietario.text()}', '{self.cpfCriadorEdit.text()}', '{self.tipoSangueEdit.text()}')'''
-        print(( {self.codChipEdit.text()} , {self.nomeEdit.text()}, {self.nascimentoEdit.text()}, {self.codChipMaeEdit.text()}, {self.codChipPaiEdit.text()}, {self.pelagemEdit.text()}, {self.precoCompraEdit.text()}, {self.precoVendaEdit.text()}, {self.cpfProprietario.text()}, {self.cpfCriadorEdit.text()}, {self.tipoSangueEdit.text()}))
-        try:
-            print(self.mainDatabasePath)
-            connection = sqlite3.connect(self.mainDatabasePath)
-            cursor = connection.cursor()
-            cursor.execute(saveCommandSql)
-            connection.commit()
-            connection.close()
+        #saveCommandSql =f'''INSERT INTO animais_data (codChip, nomeAnimal, nascimento, CodChipMae, codChipPai, pelagem, preco_compra, preco_venda, cpfProprietario, cpfCriador, tipoSanquineo ) VALUES ( '{self.codChipEdit.text()}' , '{self.nomeEdit.text()}', '{self.nascimentoEdit.text()}', '{self.codChipMaeEdit.text()}, {self.codChipPaiEdit.text()}, {self.pelagemEdit.text()}, {self.precoCompraEdit.text()}, {self.precoVendaEdit.text()}', '{self.cpfProprietario.text()}', '{self.cpfCriadorEdit.text()}', '{self.tipoSangueEdit.text()}')'''
+        #print(( {self.codChipEdit.text()} , {self.nomeEdit.text()}, {self.nascimentoEdit.text()}, {self.codChipMaeEdit.text()}, {self.codChipPaiEdit.text()}, {self.pelagemEdit.text()}, {self.precoCompraEdit.text()}, {self.precoVendaEdit.text()}, {self.cpfProprietario.text()}, {self.cpfCriadorEdit.text()}, {self.tipoSangueEdit.text()}))
+        #try:
+        #    print(self.mainDatabasePath)
+        #    connection = sqlite3.connect(self.mainDatabasePath)
+        #    cursor = connection.cursor()
+        #    cursor.execute(saveCommandSql)
+        #    connection.commit()
+        #    connection.close()
             
-        except sqlite3.Error as e:
-            print(str(e))
+        #except sqlite3.Error as e:
+           # print(str(e))
+        messageBox = QtWidgets.QMessageBox()
+        messageBox.setText("Função já codificada, falta copiar para codigo")
+        messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        messageBox.exec()
     
     def salvarTerceiro(self):
         print("Salvando Terceiro")
-        saveCommandSql =f'''INSERT INTO terceiros_data (cpfTerceiro, nomeTerceiro, contatoTerceiro, cidadeTerceiro, observacaoTerceiro ) VALUES ('{self.cpfTerceiroEdit.text()}', '{self.nomeTerceiroEdit.text()}', '{self.contatoTerceiroEdit.text()}','{self.cidadeTerceiroEdit.text()}', '{self.observacoesTerceiroEdit.toPlainText()}')'''
-        print({self.cpfTerceiroEdit.text()}, {self.nomeTerceiroEdit.text()}, {self.contatoTerceiroEdit.text()}, {self.cidadeTerceiroEdit.text()}, {self.observacoesTerceiroEdit.toPlainText()})
-        try:
-            print(self.mainDatabasePath)
-            connection = sqlite3.connect(self.mainDatabasePath)
-            cursor = connection.cursor()
-            cursor.execute(saveCommandSql)
-            connection.commit()
-            connection.close()
-            
-        except sqlite3.Error as e:
-            print(str(e))
+        #saveCommandSql =f'''INSERT INTO terceiros_data (cpfTerceiro, nomeTerceiro, contatoTerceiro, cidadeTerceiro, observacaoTerceiro ) VALUES ('{self.cpfTerceiroEdit.text()}', '{self.nomeTerceiroEdit.text()}', '{self.contatoTerceiroEdit.text()}','{self.cidadeTerceiroEdit.text()}', '{self.observacoesTerceiroEdit.toPlainText()}')'''
+        #print({self.cpfTerceiroEdit.text()}, {self.nomeTerceiroEdit.text()}, {self.contatoTerceiroEdit.text()}, {self.cidadeTerceiroEdit.text()}, {self.observacoesTerceiroEdit.toPlainText()})
+        #try:
+           # print(self.mainDatabasePath)
+       #     connection = sqlite3.connect(self.mainDatabasePath)
+        #    cursor = connection.cursor()
+        #    cursor.execute(saveCommandSql)
+        #    connection.commit()
+        #    connection.close()
+        #    
+        #except sqlite3.Error as e:
+        #    print(str(e))
+        messageBox = QtWidgets.QMessageBox()
+        messageBox.setText("Função já codificada, falta copiar para codigo")
+        messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        messageBox.exec()
 
     def resultadoBuscaAnimais(self):
-        termo = self.buscaDeAnimallineEdit.text()
-        buscasql =f'''SELECT codChip, nomeAnimal FROM animais_data WHERE  cpfProprietario ="{termo}"'''
+        strdeBusca = self.buscaDeAnimallineEdit.text()
+        searchInDb = "codChip cpfProprietario cpfCriador"
+        headerTitle = ["Chip", "Proprietário", "Criador"]
+        #codChip, cpfprorietario, cpfCriador já estao por default na busca e exibiçao de dados.
+        print(self.nascimentoBuscacheckBox.isChecked())
+        if self.nascimentoBuscacheckBox.isChecked():
+            searchInDb += " nascimento"
+            headerTitle.append("Nascimento")
+        if self.codChipMaeBuscacheckBox.isChecked():
+            searchInDb +=" codChipMae"
+            headerTitle.append("Mãe")
+        if self.codChipPaiBuscacheckBox.isChecked():
+            searchInDb +=" codChipPai"
+            headerTitle.append("Pai")
+        if self.pelagemBuscacheckbox.isChecked():
+            searchInDb +=" pelagem"
+            headerTitle.append("Pelagem")
+        if self.vendaBuscacheckBox.isChecked():
+            searchInDb.join(" preco_venda")
+            headerTitle.append("Venda")
+        if self.compraBuscacheckBox.isChecked():
+            searchInDb +=" preco_compra"
+            headerTitle.append("Compra")
+        
+        criterioSelected = self.criterioBuscaComboBox.currentText()
+        if criterioSelected == "Chip":
+            criterio = "codChip"
+        elif criterioSelected == "ChipPai":
+            criterio = "codChipPai"
+        elif criterioSelected == "ChipMae":
+            criterio = "codChipMae"
+        elif criterioSelected == "Nascimento":
+            criterio = "nascimento"
+        elif criterioSelected == "Nome":
+            criterio = "nomeAnimal"
+        elif criterioSelected == "Pelagem":
+            criterio = "pelagem"
+        elif criterioSelected == "Proprietario":
+            criterio = "cpfProprietario"
+        elif criterioSelected == "Criador":
+            criterio = "cpfCriador"
+        elif criterioSelected == "Tipo Sanguineo":
+            criterio = "tipoSanquineo"
+        else:
+            return
+        
+
+        columns = searchInDb.split(" ")
+        buscasql =f'''SELECT {', '.join(columns)} FROM animais_data WHERE  "{criterio}" ="{strdeBusca}"'''
+        print(buscasql)
+        self.buscaDeAnimaltableWidget.clearContents()
+        self.buscaDeAnimaltableWidget.setRowCount(0)
         try:
             connection = sqlite3.connect(self.mainDatabasePath)
             cursor = connection.cursor()
@@ -1067,47 +970,99 @@ class MainWindowApp():
             rows = cursor.fetchall()
             connection.close()
             self.buscaDeAnimaltableWidget.setRowCount(10)  # Set the number of rows as needed
-            self.buscaDeAnimaltableWidget.setColumnCount(2)
+            print(print(columns))
+            self.buscaDeAnimaltableWidget.setColumnCount(len(columns))
+            rows.insert(0, tuple(headerTitle))
+
+
+            self.buscaDeAnimaltableWidget.horizontalHeader().setVisible(False)
+            self.buscaDeAnimaltableWidget.verticalHeader().setVisible(False)
 
             # Set the column headers (optional)
-            self.buscaDeAnimaltableWidget.setHorizontalHeaderLabels(["codChip", "Nome"])
-            # Populate the QTableWidget with data
+
+            # Populate the QTableWidget with data            
             for row_number, row_data in enumerate(rows):
                 self.buscaDeAnimaltableWidget.insertRow(row_number)
                 for column_number, data in enumerate(row_data):
                     item = QtWidgets.QTableWidgetItem(str(data))
                     self.buscaDeAnimaltableWidget.setItem(row_number, column_number, item)
+            self.buscaDeAnimaltableWidget.resizeColumnsToContents()
+                
         except sqlite3.Error as e:
             print(str(e))
+        
+        messageBox = QtWidgets.QMessageBox()
+        messageBox.setText("Função já codificada, falta copiar para codigo parcialmente")
+        messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        messageBox.exec()
 
         
     def rigthClickBuscaAnimais(self, event):
         contextMenu = QtWidgets.QMenu(self.buscaDeAnimaltableWidget)
         actionExcluir = QtGui.QAction("Excluir")
         actionAlterar = QtGui.QAction("Alterar")
+        actionGenealogia = QtGui.QAction("Genealogia")
+
 
         actionExcluir.triggered.connect(self.actionExcluir)
         actionAlterar.triggered.connect(self.actionAlterar)
+        actionGenealogia.triggered.connect(self.genealogia)
 
         contextMenu.addAction(actionExcluir)
         contextMenu.addAction(actionAlterar)
+        contextMenu.addAction(actionGenealogia)
 
         contextMenu.exec(self.buscaDeAnimaltableWidget.mapToGlobal(QtCore.QPoint(event.x(), event.y())))
 
-    def actionExcluir(self):
+    def genealogia(self):
+        print("Gerar Genealogia")
         selected_item = self.buscaDeAnimaltableWidget.selectedItems()
-        if selected_item:
-            row = selected_item[0].row()
-            chipCodeAnimal = self.buscaDeAnimaltableWidget.item(row, 1).text()
-            #colocar mensage box para que usuario confire a exclusão do animal
-            connection = sqlite3.connect(self.mainDatabasePath)
-            cursor = connection.cursor()
-            sqlcommand = f'''DELETE FROM animais_data WHERE codChip = "{chipCodeAnimal}"'''
-            cursor.execute(sqlcommand)
-            connection.close()
-            print("Animal excluido permanetemente!")
+        row = selected_item[0].row()
+        chipCodeAnimal = self.buscaDeAnimaltableWidget.item(row, 0).text()
+        MakeGenealogy.tableToImageAnimal(self.mainDatabasePath, self.mainDir, str(chipCodeAnimal))
+        #pegando toda genealogia do Animal
+        codAllRelatives = MakeGenealogy.getAllRelativies(self.mainDatabasePath, str(chipCodeAnimal))
+        print(len(codAllRelatives))
+
+        #create imgtables to all relativies
+        for i in range(1, 15):
+            MakeGenealogy.tableToImageRelativies(self.mainDatabasePath, self.mainDir, str(codAllRelatives[i][0]), str(codAllRelatives[i][1]))
+        #create graph
+        MakeGenealogy.createGenealogyImage(self.mainDir)
+        messageBox = QtWidgets.QMessageBox()
+        messageBox.setText("Função já codificada, falta copiar para codigo, Adicionar Marca D'agua( logo da empresa ou pessoa que assina)")
+        messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        messageBox.exec()
+
+    def actionExcluir(self):
+        #selected_item = self.buscaDeAnimaltableWidget.selectedItems()
+        #if selected_item:
+        #    row = selected_item[0].row()
+        #   chipCodeAnimal = self.buscaDeAnimaltableWidget.item(row, 0).text()
+        #   print(chipCodeAnimal)
+        #    #colocar mensage box para que usuario confire a exclusão do animal
+        #    connection = sqlite3.connect(self.mainDatabasePath)
+        #    cursor = connection.cursor()
+        #    sqlcommand = f'''DELETE FROM animais_data WHERE codChip = "{chipCodeAnimal}"'''
+        #    cursor.execute(sqlcommand)
+        #    connection.close()
+        #   print("Animal excluido permanetemente!")
+        messageBox = QtWidgets.QMessageBox()
+        messageBox.setText("Função já codificada, falta copiar para codigo")
+        messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        messageBox.exec()
 
         print("Exclui dado")
+
+
+    def select_or_create_directory(self):
+       dir = QtWidgets.QFileDialog.getExistingDirectory(self.centralwidget, "Selecione ou Crie um Diretorio")
+       print(dir)
+       messageBox = QtWidgets.QMessageBox()
+       messageBox.setText("Função já codificada, falta copiar para codigo")
+       messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+       messageBox.exec()
+        
 
     def set_background_label(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
@@ -1117,7 +1072,16 @@ class MainWindowApp():
                 pixmap = QtGui.QPixmap(image_path)
                 if not pixmap.isNull():
                     self.foto1Animallabel.setPixmap(pixmap.scaled(self.foto1Animallabel.size(), Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
+        
+        messageBox = QtWidgets.QMessageBox()
+        messageBox.setText("Função já codificada, falta copiar para codigo")
+        messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        messageBox.exec()
 
 
     def actionAlterar(self):
         print("Vai para alterar Dado")
+        messageBox = QtWidgets.QMessageBox()
+        messageBox.setText("Função já codificada, falta copiar para codigo")
+        messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        messageBox.exec()
