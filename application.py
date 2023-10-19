@@ -16,7 +16,8 @@ if __name__ == "__main__":
      #mainDir = os.path.dirname(sys.executable)
      #mainDir = os.path.dirname(__file__).replace("\\", "/")
      mainDir = os.path.dirname(os.path.abspath(__file__))
-
+     #criando e checkando diretorios do sistema
+     
      app = QApplication(sys.argv)
      splashScreen = SplashScreen(mainDir)
      splashScreen.show()
@@ -35,6 +36,7 @@ if __name__ == "__main__":
           resultado = cursor.fetchone()
           cpf, sem_senha = resultado
           connection.close()
+          print(cpf)
           if cpf != "000":
                if not sem_senha:
                     print("general charge")
@@ -56,6 +58,8 @@ if __name__ == "__main__":
                InterfaceInit.tokenCpfInitUi()         
 
      except sqlite3.Error as e:
+          #so entra aqui se der erro na leitura inicial no bamco de dados, 
+          #apagar essa parte quando finalizar o codigo
           print('foqui')
           create_table_sql = """
           CREATE TABLE IF NOT EXISTS user_access_data (
@@ -75,7 +79,6 @@ if __name__ == "__main__":
           cursor = connection.cursor()
           cursor.execute(create_table_sql)
           connection.commit()
-          values = ("00000000000")
           insert_sql = "INSERT INTO user_access_data (cpf) VALUES (?)"
           cursor.execute(insert_sql, ("000", ))
           connection.commit()

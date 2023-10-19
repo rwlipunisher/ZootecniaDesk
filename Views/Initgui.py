@@ -108,15 +108,26 @@ class InitUserInterfaces(object):
         checkBox_5.setFont(font)
         checkBox_5.setStyleSheet("color: rgb(255, 255, 255);")
         checkBox_5.setObjectName("checkBox_5")
+        # Create a new widget to hold the line edit and push button
+        line_edit_right = QtWidgets.QLineEdit(parent=centralwidget)
+        line_edit_right.setGeometry(QtCore.QRect(120, 490, 131, 21))
+        line_edit_right.setPlaceholderText("Your Text Here")
+        line_edit_right.setObjectName("line_edit_right")
+
+        # Create a QPushButton below checkBox_5
+        push_button_right = QtWidgets.QPushButton(parent=centralwidget)
+        push_button_right.setGeometry(QtCore.QRect(280, 490, 111, 28))
+        push_button_right.setText("Button Text")
+        push_button_right.setObjectName("push_button_right")
         font = QtGui.QFont()
         font.setPointSize(10)
         pushButton = QtWidgets.QPushButton(parent=centralwidget)
-        pushButton.setGeometry(QtCore.QRect(210, 500, 261, 34))
+        pushButton.setGeometry(QtCore.QRect(220, 520, 131, 28))
         pushButton.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(119, 255, 142, 122));\n"
         "color: rgb(255, 255, 255);")
         pushButton.setObjectName("pushButton")
         pushButton_2 = QtWidgets.QPushButton(parent=centralwidget)
-        pushButton_2.setGeometry(QtCore.QRect(260, 540, 161, 34))
+        pushButton_2.setGeometry(QtCore.QRect(220, 560, 131, 28))
         pushButton_2.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgba(230, 181, 5, 115));\n"
         "color: rgb(255, 255, 255);")
         pushButton_2.setObjectName("pushButton_2")
@@ -136,6 +147,8 @@ class InitUserInterfaces(object):
         pushButton_2.setText("Cancelar")
         pushButton_2.clicked.connect(QApplication.quit)
         pushButton.clicked.connect(self.checkDataToCreateUser)
+        push_button_right.clicked.connect(self.selectPersonalPath)
+        
 
     def tokenCpfInitUi(self):
         self.MainWindow.setObjectName("MainWindow")
@@ -257,6 +270,11 @@ class InitUserInterfaces(object):
         pushButton.clicked.connect(self.login)
         pushButton_2.clicked.connect(QApplication.quit)
     
+    def selectPersonalPath(self):
+
+        dir = QtWidgets.QFileDialog.getExistingDirectory(self.MainWindow.findChild(QtWidgets.QWidget, "centralwidget"), "Selecione ou Crie um diretorio")
+        self.MainWindow.findChild(QtWidgets.QLineEdit, "line_edit_right").setText(str(dir))
+
     def checkDataToCreateUser(self):
         #get all data in to a listea
         dictAux = {}
@@ -301,7 +319,13 @@ class InitUserInterfaces(object):
             msg_box.exec()
             return
 
-
+        dictAux["userPath"] = self.MainWindow.findChild(QtWidgets.QLineEdit, "line_edit_right").text()
+        if not os.path.exists(dictAux["userPath"]):
+                msg_box = QtWidgets.QMessageBox()
+                msg_box.setWindowTitle("Mensagem de Erro")
+                msg_box.setText("Caminho para armazenar dados Não existe! Revise as informações")
+                msg_box.exec()
+                return        
 
         self.dictInit.update(dictAux)
         self.dictInit["criador"] = self.MainWindow.findChild(QtWidgets.QCheckBox, "checkBox_5").isChecked()
@@ -313,14 +337,14 @@ class InitUserInterfaces(object):
         db_path = os.path.join(self.mainDir+ "\Resources\DataBase\main.db")
         connection = sqlite3.connect(str(db_path))
         cursor = connection.cursor()
-        result = cursor.execute('SELECT user_name, senha FROM user_access_data WHERE id=1').fetchone()
+        result = cursor.execute('SELECT user_name, senha, personalPath FROM user_access_data WHERE id=1').fetchone()
         connection.close()
-        duser, dsenha = result
+        duser, dsenha, personalDir = result
         if duser == user:
             if dsenha == senha:
                 self.MainWindow.centralWidget().deleteLater()
-                main = MainWindowApp()
-                main.setupUi(self.MainWindow, self.mainDir)
+                main = MainWindowApp() 
+                main.setupUi(self.MainWindow, self.mainDir, personalDir)
             else: 
                 msg_box = QtWidgets.QMessageBox()
                 msg_box.setWindowTitle("Aviso de Erro!")
@@ -331,7 +355,6 @@ class InitUserInterfaces(object):
             msg_box.setWindowTitle("Aviso de Erro!")
             msg_box.setText("Usuario nao existe")
             msg_box.exec()
-        
 
     def firstDataBaseUserWrite(self):    
         try:
@@ -348,13 +371,19 @@ class InitUserInterfaces(object):
                                 cpfOrCnpj = '{self.dictInit["cpfOrCnpj"]}',
                                 senha = '{self.dictInit["senha"]}',
                                 sem_senha = '{self.dictInit["sem_senha"]}',
-                                criador = '{self.dictInit["criador"]}'
+                                criador = '{self.dictInit["criador"]}', 
+                                personalPath = '{self.dictInit["userPath"]}'
                             WHERE id = 1'''
             
             #insert_sql = "INSERT INTO user_access_data (cpf, token, name, nascimento, user_name, nomeEmpresa, cpfOrCnpj, senha, sem_senha, criador) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             cursor.execute(insert_sql)
             connection.commit()
             connection.close()
+            makdirs = ["\\Genealogias", "\\Backups", "\\ImagensDeAnimais"]
+            self.dictInit["userPath"]
+            for i in makdirs:
+                os.makedirs(self.dictInit["userPath"]+i)
+
         except sqlite3.Error as e:
             print(e, "Esse Erro")
         
@@ -374,7 +403,7 @@ class InitUserInterfaces(object):
                 self.dictInit["cpf"] = cpf.text()
                 self.dictInit["token"] = token.text()
                 self.MainWindow.centralWidget().deleteLater()
-                self.initialAccessUi() 
+                self.initialAccessUi()
             else:
                 msg_box = QtWidgets.QMessageBox()
                 msg_box.setWindowTitle("Aviso de Erro!")
@@ -385,6 +414,3 @@ class InitUserInterfaces(object):
             msg_box.setWindowTitle("Aviso de Erro!")
             msg_box.setText("O CPF esta incorreto")
             msg_box.exec()
-
-
-

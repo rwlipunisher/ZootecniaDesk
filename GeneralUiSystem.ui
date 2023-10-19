@@ -1442,33 +1442,13 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgb
                        <enum>QFrame::Raised</enum>
                       </property>
                       <layout class="QGridLayout" name="gridLayout_5">
-                       <item row="1" column="0">
-                        <widget class="QCheckBox" name="vendaBuscacheckBox">
+                       <item row="0" column="1">
+                        <widget class="QCheckBox" name="codChipMaeBuscacheckBox">
                          <property name="styleSheet">
                           <string notr="true">color: rgb(255, 255, 255);</string>
                          </property>
                          <property name="text">
-                          <string>Venda</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="2">
-                        <widget class="QCheckBox" name="codChipPaiBuscacheckBox">
-                         <property name="styleSheet">
-                          <string notr="true">color: rgb(255, 255, 255);</string>
-                         </property>
-                         <property name="text">
-                          <string>Pai</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="1" colspan="2">
-                        <widget class="QCheckBox" name="compraBuscacheckBox">
-                         <property name="styleSheet">
-                          <string notr="true">color: rgb(255, 255, 255);</string>
-                         </property>
-                         <property name="text">
-                          <string>Compra</string>
+                          <string>Mãe</string>
                          </property>
                         </widget>
                        </item>
@@ -1482,23 +1462,13 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgb
                          </property>
                         </widget>
                        </item>
-                       <item row="0" column="5">
-                        <widget class="QCheckBox" name="proprietarioBuscacheckBox">
+                       <item row="1" column="1" colspan="2">
+                        <widget class="QCheckBox" name="compraBuscacheckBox">
                          <property name="styleSheet">
                           <string notr="true">color: rgb(255, 255, 255);</string>
                          </property>
                          <property name="text">
-                          <string>Proprietario</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="1">
-                        <widget class="QCheckBox" name="codChipMaeBuscacheckBox">
-                         <property name="styleSheet">
-                          <string notr="true">color: rgb(255, 255, 255);</string>
-                         </property>
-                         <property name="text">
-                          <string>Mãe</string>
+                          <string>Compra</string>
                          </property>
                         </widget>
                        </item>
@@ -1512,13 +1482,23 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:1 rgb
                          </property>
                         </widget>
                        </item>
-                       <item row="0" column="4">
-                        <widget class="QCheckBox" name="criadorBuscacheckBox">
+                       <item row="0" column="2">
+                        <widget class="QCheckBox" name="codChipPaiBuscacheckBox">
                          <property name="styleSheet">
                           <string notr="true">color: rgb(255, 255, 255);</string>
                          </property>
                          <property name="text">
-                          <string>Criador</string>
+                          <string>Pai</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QCheckBox" name="vendaBuscacheckBox">
+                         <property name="styleSheet">
+                          <string notr="true">color: rgb(255, 255, 255);</string>
+                         </property>
+                         <property name="text">
+                          <string>Venda</string>
                          </property>
                         </widget>
                        </item>

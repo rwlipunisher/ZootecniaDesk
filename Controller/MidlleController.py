@@ -2,6 +2,7 @@
 import os
 import sqlite3
 from Models import InitDataBase
+from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import networkx as nx
@@ -233,7 +234,7 @@ class MakeGenealogy:
         genealogia = [
             "Animal", "Pai", "Mãe", 
             "Avô Paterno","Avó Paterno","Avô Materna", "Avó Materna",
-            "Bisavô1","Bisavó1","Bisavô2","Bisavó2", "Bisavô3","Bisavó3", "Bisavô3","Bisavó3"]
+            "Bisavô", "Bisavó", "Bisavô1","Bisavó1","Bisavô2","Bisavó2", "Bisavô3","Bisavó3", "Bisavô3","Bisavó3"]
         
         listaGeral = []
         for i in range(0, 15):
@@ -294,7 +295,7 @@ class MakeGenealogy:
 
         ax = plt.subplot()
         ax.set_aspect('equal')
-        nx.draw_networkx_edges(G, pos, ax=ax, width=2.0)
+        #nx.draw_networkx_edges(G, pos, ax=ax, width=2.0)
 
         # Remova as linhas abaixo que definem limites
         # plt.xlim(-1.5, 1.5)
@@ -304,15 +305,24 @@ class MakeGenealogy:
         trans = ax.transData.transform
         trans2 = fig.transFigure.inverted().transform
 
-        piesize = 0.1  # this is the image size
-        p2 = piesize / 2.0
+        piesize = 0.3  # this is the image size
+        p2 = 0.07
         for n in G:
             xx, yy = trans(pos[n])  # figure coordinates
             xa, ya = trans2((xx, yy))  # axes coordinates
-            a = plt.axes([xa - p2, ya - p2, piesize, piesize])
+            a = plt.axes([xa - p2+0.5, ya - p2+0.5, piesize, piesize])
             a.set_aspect('equal')
             a.imshow(G._node[n]['image'])
             a.axis('off')
         ax.axis('off')
 
         plt.savefig(mainPath+"\\graph_image.png", bbox_inches="tight", pad_inches=0)
+        image = Image.open(mainPath+"\\graph_image.png")
+        # Calculate the new height while maintaining the aspect ratio
+        original_width, original_height = image.size
+        # Resize the image while maintaining the aspect ratio
+        resized_image = image.resize((original_height, original_width))
+
+# Save the resized image
+        resized_image.save(mainPath+"\\output.png")
+        print("Saved!")

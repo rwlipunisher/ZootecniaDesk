@@ -2,12 +2,17 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6.QtCore import Qt
 import sqlite3
+import shutil
+import os
 from Controller import *
 
 class MainWindowApp():
     
-    def setupUi(self, MainWindow: QMainWindow, mainDir: str):
+    def setupUi(self, MainWindow: QMainWindow, mainDir: str, personalDir: str):
         self.mainDir = mainDir
+        self.personalDir = personalDir
+        self.MainWindow = MainWindow
+        print(self.personalDir)
         self.mainDatabasePath = os.path.join(mainDir+ "\Resources\DataBase\main.db")
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1032, 688)
@@ -621,38 +626,30 @@ class MainWindowApp():
         self.frame_9.setObjectName("frame_9")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.frame_9)
         self.gridLayout_5.setObjectName("gridLayout_5")
-        self.vendaBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
-        self.vendaBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
-        self.vendaBuscacheckBox.setObjectName("vendaBuscacheckBox")
-        self.gridLayout_5.addWidget(self.vendaBuscacheckBox, 1, 0, 1, 1)
-        self.codChipPaiBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
-        self.codChipPaiBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
-        self.codChipPaiBuscacheckBox.setObjectName("codChipPaiBuscacheckBox")
-        self.gridLayout_5.addWidget(self.codChipPaiBuscacheckBox, 0, 2, 1, 1)
-        self.compraBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
-        self.compraBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
-        self.compraBuscacheckBox.setObjectName("compraBuscacheckBox")
-        self.gridLayout_5.addWidget(self.compraBuscacheckBox, 1, 1, 1, 2)
-        self.pelagemBuscacheckbox = QtWidgets.QCheckBox(parent=self.frame_9)
-        self.pelagemBuscacheckbox.setStyleSheet("color: rgb(255, 255, 255);")
-        self.pelagemBuscacheckbox.setObjectName("pelagemBuscacheckbox")
-        self.gridLayout_5.addWidget(self.pelagemBuscacheckbox, 0, 3, 1, 1)
-        self.proprietarioBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
-        self.proprietarioBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
-        self.proprietarioBuscacheckBox.setObjectName("proprietarioBuscacheckBox")
-        self.gridLayout_5.addWidget(self.proprietarioBuscacheckBox, 0, 5, 1, 1)
         self.codChipMaeBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
         self.codChipMaeBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
         self.codChipMaeBuscacheckBox.setObjectName("codChipMaeBuscacheckBox")
         self.gridLayout_5.addWidget(self.codChipMaeBuscacheckBox, 0, 1, 1, 1)
+        self.pelagemBuscacheckbox = QtWidgets.QCheckBox(parent=self.frame_9)
+        self.pelagemBuscacheckbox.setStyleSheet("color: rgb(255, 255, 255);")
+        self.pelagemBuscacheckbox.setObjectName("pelagemBuscacheckbox")
+        self.gridLayout_5.addWidget(self.pelagemBuscacheckbox, 0, 3, 1, 1)
+        self.compraBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
+        self.compraBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
+        self.compraBuscacheckBox.setObjectName("compraBuscacheckBox")
+        self.gridLayout_5.addWidget(self.compraBuscacheckBox, 1, 1, 1, 2)
         self.nascimentoBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
         self.nascimentoBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
         self.nascimentoBuscacheckBox.setObjectName("nascimentoBuscacheckBox")
         self.gridLayout_5.addWidget(self.nascimentoBuscacheckBox, 0, 0, 1, 1)
-        self.criadorBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
-        self.criadorBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
-        self.criadorBuscacheckBox.setObjectName("criadorBuscacheckBox")
-        self.gridLayout_5.addWidget(self.criadorBuscacheckBox, 0, 4, 1, 1)
+        self.codChipPaiBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
+        self.codChipPaiBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
+        self.codChipPaiBuscacheckBox.setObjectName("codChipPaiBuscacheckBox")
+        self.gridLayout_5.addWidget(self.codChipPaiBuscacheckBox, 0, 2, 1, 1)
+        self.vendaBuscacheckBox = QtWidgets.QCheckBox(parent=self.frame_9)
+        self.vendaBuscacheckBox.setStyleSheet("color: rgb(255, 255, 255);")
+        self.vendaBuscacheckBox.setObjectName("vendaBuscacheckBox")
+        self.gridLayout_5.addWidget(self.vendaBuscacheckBox, 1, 0, 1, 1)
         self.gridLayout_3.addWidget(self.frame_9, 4, 0, 1, 3)
         self.horizontalLayout_8.addWidget(self.frame)
         self.frame_7 = QtWidgets.QFrame(parent=self.frame_6)
@@ -823,14 +820,12 @@ class MainWindowApp():
         self.buscarAnimalpushButton.setText(_translate("MainWindow", "Buscar"))
         self.buscaDeAnimallineEdit.setPlaceholderText(_translate("MainWindow", "Digite aqui a sua busca"))
         self.label.setText(_translate("MainWindow", "Busca de Animais"))
-        self.vendaBuscacheckBox.setText(_translate("MainWindow", "Venda"))
-        self.codChipPaiBuscacheckBox.setText(_translate("MainWindow", "Pai"))
-        self.compraBuscacheckBox.setText(_translate("MainWindow", "Compra"))
-        self.pelagemBuscacheckbox.setText(_translate("MainWindow", "Pelagem"))
-        self.proprietarioBuscacheckBox.setText(_translate("MainWindow", "Proprietario"))
         self.codChipMaeBuscacheckBox.setText(_translate("MainWindow", "Mãe"))
+        self.pelagemBuscacheckbox.setText(_translate("MainWindow", "Pelagem"))
+        self.compraBuscacheckBox.setText(_translate("MainWindow", "Compra"))
         self.nascimentoBuscacheckBox.setText(_translate("MainWindow", "Nasc"))
-        self.criadorBuscacheckBox.setText(_translate("MainWindow", "Criador"))
+        self.codChipPaiBuscacheckBox.setText(_translate("MainWindow", "Pai"))
+        self.vendaBuscacheckBox.setText(_translate("MainWindow", "Venda"))
         self.label_9.setText(_translate("MainWindow", "Busca de Terceiros"))
         self.criterioBuscaTerceirocomboBox.setItemText(0, _translate("MainWindow", "Criterio"))
         self.criterioBuscaTerceirocomboBox.setItemText(1, _translate("MainWindow", "CPF"))
@@ -846,7 +841,10 @@ class MainWindowApp():
         
         
         #Inicio das atribuições de ação
-        self.foto1Animallabel.mousePressEvent = self.set_background_label
+        self.image_path1 = ""
+        self.image_path2 = ""
+        self.foto1Animallabel.mousePressEvent = self.setFotoAnimal1
+        self.foto2Animallabel.mousePressEvent = self.setFotoAnimal2
         self.selectMainDirpushButton.clicked.connect(self.select_or_create_directory)
         self.cadastrospushButton.clicked.connect(self.goToAnimaisCadastro)
         self.configuracoespushButton.clicked.connect(self.goToConfiguracoes)
@@ -870,25 +868,110 @@ class MainWindowApp():
 
 
     def salvarAnimais(self):
-        print("Salvando novo Animal")
-
+        print("Criando ou Salvando Animal")
         #checkagem de campos
-        #saveCommandSql =f'''INSERT INTO animais_data (codChip, nomeAnimal, nascimento, CodChipMae, codChipPai, pelagem, preco_compra, preco_venda, cpfProprietario, cpfCriador, tipoSanquineo ) VALUES ( '{self.codChipEdit.text()}' , '{self.nomeEdit.text()}', '{self.nascimentoEdit.text()}', '{self.codChipMaeEdit.text()}, {self.codChipPaiEdit.text()}, {self.pelagemEdit.text()}, {self.precoCompraEdit.text()}, {self.precoVendaEdit.text()}', '{self.cpfProprietario.text()}', '{self.cpfCriadorEdit.text()}', '{self.tipoSangueEdit.text()}')'''
-        #print(( {self.codChipEdit.text()} , {self.nomeEdit.text()}, {self.nascimentoEdit.text()}, {self.codChipMaeEdit.text()}, {self.codChipPaiEdit.text()}, {self.pelagemEdit.text()}, {self.precoCompraEdit.text()}, {self.precoVendaEdit.text()}, {self.cpfProprietario.text()}, {self.cpfCriadorEdit.text()}, {self.tipoSangueEdit.text()}))
-        #try:
-        #    print(self.mainDatabasePath)
-        #    connection = sqlite3.connect(self.mainDatabasePath)
-        #    cursor = connection.cursor()
-        #    cursor.execute(saveCommandSql)
-        #    connection.commit()
-        #    connection.close()
-            
-        #except sqlite3.Error as e:
-           # print(str(e))
-        messageBox = QtWidgets.QMessageBox()
-        messageBox.setText("Função já codificada, falta copiar para codigo")
-        messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-        messageBox.exec()
+        if self.codChipEdit.text() == "":
+            messageBox = QtWidgets.QMessageBox()
+            messageBox.setText("Codigo de Chip do Animal é obrigatorio")
+            messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+            messageBox.exec()
+            return
+        
+        if self.nomeEdit.text() == "":
+            messageBox = QtWidgets.QMessageBox()
+            messageBox.setText("O Nome do Animal é obrigatorio")
+            messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+            messageBox.exec()
+            return
+        
+        if self.nascimentoEdit.text() == "":
+            messageBox = QtWidgets.QMessageBox()
+            messageBox.setText("A data de Nascimento é obrigatoria")
+            messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+            messageBox.exec()
+            return
+        
+        print(self.Sexo.text(), "here")
+        if  not (self.Sexo.text() == "Macho" or self.Sexo.text() == "Femea") :
+            messageBox = QtWidgets.QMessageBox()
+            messageBox.setText("O Sexo so pode ser preenchido pelas palavras 'Macho' ou 'Femea'")
+            messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+            messageBox.exec()
+            return
+        
+        
+        if self.pelagemEdit.text() == "":
+            messageBox = QtWidgets.QMessageBox()
+            messageBox.setText("A Pelagem é Obrigatoria")
+            messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+            messageBox.exec()
+            return
+        
+        if self.tipoSangueEdit.text() == "" :
+            messageBox = QtWidgets.QMessageBox()
+            messageBox.setText("O tipo Sanquineo é Obrigatorio")
+            messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+            messageBox.exec()
+            return
+        
+        if self.cpfCriadorEdit.text() == "" :
+            messageBox = QtWidgets.QMessageBox()
+            messageBox.setText("O CPF do Criador é Obrigatorio")
+            messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+            messageBox.exec()
+            return
+        
+        if self.cpfProprietario.text() == "" :
+            messageBox = QtWidgets.QMessageBox()
+            messageBox.setText("O CPF do Proprietário do Animal é Obrigatorio")
+            messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+            messageBox.exec()
+            return
+
+        if self.image_path1: 
+            img1 = Image.open(self.image_path1)
+            img1.save(self.personalDir+f"\\ImagensDeAnimais\\fot1_{self.codChipEdit.text()}.png")
+            path1 = self.personalDir+f"\\ImagensDeAnimais\\fot1_{self.codChipEdit.text()}.png"
+        else:
+            path1 = "" #colocar imagem padrao
+        
+        if self.image_path2:
+            img2 = Image.open(self.image_path2)
+            img2.save(self.personalDir+f"\\ImagensDeAnimais\\fot2_{self.codChipEdit.text()}.png")
+            path2 = self.personalDir+f"\\ImagensDeAnimais\\fot2_{self.codChipEdit.text()}.png"
+        else:
+            path2 = "" #colocar ImagemPadrao
+        
+        #checkagem se o codAnimal ja existe, se existe faz um update, se não existe cadastra novo animal
+        try:
+            conn = sqlite3.connect(self.mainDatabasePath)
+            cursor = conn.cursor()
+            result = cursor.execute(f"SELECT nomeAnimal FROM animais_data WHERE codChip='{self.codChipEdit.text()}'").fetchone()
+            if result:
+                print("Já existe, fazer update")
+                queryToInsertData = f''' UPDATE animais_data SET nomeAnimal = '{self.nomeEdit.text()}', new_sexoAnimal = '{self.Sexo.text()}', nascimento = '{self.nascimentoEdit.text()}', pelagem = '{self.pelagemEdit.text()}', preco_compra = '{self.precoCompraEdit.text()}', preco_venda = '{self.precoVendaEdit.text()}', cpfProprietario = '{self.cpfProprietario.text()}', cpfCriador = '{self.cpfCriadorEdit.text()}', tipoSanquineo = '{self.tipoSangueEdit.text()}', fot1 = '{path1}', fot2 = '{path2}' WHERE codChip = {self.codChipEdit.text()} '''
+                print(queryToInsertData)
+                cursor.execute(queryToInsertData)
+                conn.commit()
+                messageBox = QtWidgets.QMessageBox()
+                messageBox.setText("Dados Alterados com Sucesso!")
+                messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                messageBox.exec()
+                self.setupUi(self.MainWindow, self.mainDir, self.personalDir)
+            else:
+                queryToInsertData = f'''INSERT INTO animais_data (codChip,  new_sexoAnimal, nomeAnimal, nascimento, CodChipMae, codChipPai, pelagem, preco_compra, preco_venda, cpfProprietario, cpfCriador, tipoSanquineo, fot1, fot2 ) VALUES 
+                ( '{self.codChipEdit.text()}' , '{self.Sexo.text()}','{self.nomeEdit.text()}', '{self.nascimentoEdit.text()}', '{self.codChipMaeEdit.text()}', '{self.codChipPaiEdit.text()}', '{self.pelagemEdit.text()}', '{self.precoCompraEdit.text()}', '{self.precoVendaEdit.text()}', '{self.cpfProprietario.text()}', '{self.cpfCriadorEdit.text()}', '{self.tipoSangueEdit.text()}', '{self.image_path1}', '{self.image_path2}')'''
+                cursor.execute(queryToInsertData)
+                conn.commit()
+                messageBox = QtWidgets.QMessageBox()
+                messageBox.setText("Novo Animal Cadastrado com Sucesso")
+                messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                messageBox.exec()
+                self.setupUi(self.MainWindow, self.mainDir, self.personalDir)
+            conn.close()
+            return
+        except sqlite3.Error as e: 
+            print(str(e))
     
     def salvarTerceiro(self):
         print("Salvando Terceiro")
@@ -914,7 +997,6 @@ class MainWindowApp():
         searchInDb = "codChip cpfProprietario cpfCriador"
         headerTitle = ["Chip", "Proprietário", "Criador"]
         #codChip, cpfprorietario, cpfCriador já estao por default na busca e exibiçao de dados.
-        print(self.nascimentoBuscacheckBox.isChecked())
         if self.nascimentoBuscacheckBox.isChecked():
             searchInDb += " nascimento"
             headerTitle.append("Nascimento")
@@ -955,10 +1037,9 @@ class MainWindowApp():
             criterio = "tipoSanquineo"
         else:
             return
-        
 
         columns = searchInDb.split(" ")
-        buscasql =f'''SELECT {', '.join(columns)} FROM animais_data WHERE  "{criterio}" ="{strdeBusca}"'''
+        buscasql =f'''SELECT {', '.join(columns)} FROM animais_data WHERE  {criterio}={strdeBusca}'''
         print(buscasql)
         self.buscaDeAnimaltableWidget.clearContents()
         self.buscaDeAnimaltableWidget.setRowCount(0)
@@ -969,15 +1050,19 @@ class MainWindowApp():
             connection.commit()
             rows = cursor.fetchall()
             connection.close()
-            self.buscaDeAnimaltableWidget.setRowCount(10)  # Set the number of rows as needed
+            print(len(rows))
+            if len(rows) == 0: 
+                messageBox = QtWidgets.QMessageBox()
+                messageBox.setText("Nenhum Animal encontrado! Tente Novamente")
+                messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                messageBox.exec()
+                return            
+            self.buscaDeAnimaltableWidget.setRowCount(20)  # Set the number of rows as needed
             print(print(columns))
-            self.buscaDeAnimaltableWidget.setColumnCount(len(columns))
+            self.buscaDeAnimaltableWidget.setColumnCount(8)
             rows.insert(0, tuple(headerTitle))
-
-
             self.buscaDeAnimaltableWidget.horizontalHeader().setVisible(False)
             self.buscaDeAnimaltableWidget.verticalHeader().setVisible(False)
-
             # Set the column headers (optional)
 
             # Populate the QTableWidget with data            
@@ -989,12 +1074,7 @@ class MainWindowApp():
             self.buscaDeAnimaltableWidget.resizeColumnsToContents()
                 
         except sqlite3.Error as e:
-            print(str(e))
-        
-        messageBox = QtWidgets.QMessageBox()
-        messageBox.setText("Função já codificada, falta copiar para codigo parcialmente")
-        messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-        messageBox.exec()
+            print(str(e), "Erro da busca")
 
         
     def rigthClickBuscaAnimais(self, event):
@@ -1002,7 +1082,6 @@ class MainWindowApp():
         actionExcluir = QtGui.QAction("Excluir")
         actionAlterar = QtGui.QAction("Alterar")
         actionGenealogia = QtGui.QAction("Genealogia")
-
 
         actionExcluir.triggered.connect(self.actionExcluir)
         actionAlterar.triggered.connect(self.actionAlterar)
@@ -1017,44 +1096,51 @@ class MainWindowApp():
     def genealogia(self):
         print("Gerar Genealogia")
         selected_item = self.buscaDeAnimaltableWidget.selectedItems()
+        #ajustar erros. 
         row = selected_item[0].row()
         chipCodeAnimal = self.buscaDeAnimaltableWidget.item(row, 0).text()
-        MakeGenealogy.tableToImageAnimal(self.mainDatabasePath, self.mainDir, str(chipCodeAnimal))
+        #criando diretorios
+        if os.path.exists(self.personalDir+f"\\Genealogias\\{chipCodeAnimal}"):
+            shutil.rmtree(self.personalDir+f"\\Genealogias\\{chipCodeAnimal}")
+
+        os.makedirs(self.personalDir+f"\\Genealogias\\{chipCodeAnimal}")
+        MakeGenealogy.tableToImageAnimal(self.mainDatabasePath, self.personalDir+f"\\Genealogias\\{chipCodeAnimal}", str(chipCodeAnimal))
         #pegando toda genealogia do Animal
         codAllRelatives = MakeGenealogy.getAllRelativies(self.mainDatabasePath, str(chipCodeAnimal))
         print(len(codAllRelatives))
 
         #create imgtables to all relativies
         for i in range(1, 15):
-            MakeGenealogy.tableToImageRelativies(self.mainDatabasePath, self.mainDir, str(codAllRelatives[i][0]), str(codAllRelatives[i][1]))
+            MakeGenealogy.tableToImageRelativies(self.mainDatabasePath, self.personalDir+f"\\Genealogias\\{chipCodeAnimal}", str(codAllRelatives[i][0]), str(codAllRelatives[i][1]))
         #create graph
-        MakeGenealogy.createGenealogyImage(self.mainDir)
-        messageBox = QtWidgets.QMessageBox()
-        messageBox.setText("Função já codificada, falta copiar para codigo, Adicionar Marca D'agua( logo da empresa ou pessoa que assina)")
-        messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-        messageBox.exec()
+        MakeGenealogy.createGenealogyImage(self.personalDir+f"\\Genealogias\\{chipCodeAnimal}")
+
+        QApplication.quit()
 
     def actionExcluir(self):
-        #selected_item = self.buscaDeAnimaltableWidget.selectedItems()
-        #if selected_item:
-        #    row = selected_item[0].row()
-        #   chipCodeAnimal = self.buscaDeAnimaltableWidget.item(row, 0).text()
-        #   print(chipCodeAnimal)
-        #    #colocar mensage box para que usuario confire a exclusão do animal
-        #    connection = sqlite3.connect(self.mainDatabasePath)
-        #    cursor = connection.cursor()
-        #    sqlcommand = f'''DELETE FROM animais_data WHERE codChip = "{chipCodeAnimal}"'''
-        #    cursor.execute(sqlcommand)
-        #    connection.close()
-        #   print("Animal excluido permanetemente!")
-        messageBox = QtWidgets.QMessageBox()
-        messageBox.setText("Função já codificada, falta copiar para codigo")
-        messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-        messageBox.exec()
+        selected_item = self.buscaDeAnimaltableWidget.selectedItems()
+        if selected_item:
+            row = selected_item[0].row()
+            chipCodeAnimal = self.buscaDeAnimaltableWidget.item(row, 0).text()
+            print(chipCodeAnimal)
+            response = QtWidgets.QMessageBox.question(self.MainWindow, "Essa operação é Irreversivel", "Podemos continuar?", QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
 
-        print("Exclui dado")
-
-
+            if response == QtWidgets.QMessageBox.StandardButton.No:
+                print("Nao Concluimos")
+            else:
+            #colocar mensage box para que usuario confire a exclusão do animal
+                connection = sqlite3.connect(self.mainDatabasePath)
+                cursor = connection.cursor()
+                sqlcommand = f'''DELETE FROM animais_data WHERE codChip = '{chipCodeAnimal}' '''
+                cursor.execute(sqlcommand)
+                connection.commit()
+                connection.close()
+                messageBox = QtWidgets.QMessageBox()
+                messageBox.setText("Animal Excluido com Sucesso! Essa operação é Irreversivel")
+                messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+                messageBox.exec()
+                self.setupUi(self.MainWindow, self.mainDir, self.personalDir)
+    
     def select_or_create_directory(self):
        dir = QtWidgets.QFileDialog.getExistingDirectory(self.centralwidget, "Selecione ou Crie um Diretorio")
        print(dir)
@@ -1064,24 +1150,67 @@ class MainWindowApp():
        messageBox.exec()
         
 
-    def set_background_label(self, event):
+    def setFotoAnimal1(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
             options = QtWidgets.QFileDialog.Option.ReadOnly
-            image_path, _ = QtWidgets.QFileDialog.getOpenFileName(self.foto1Animallabel, "Select Image", "", "Images (*.png *.jpg *.jpeg *.bmp *.gif *.ico *.tiff)", options=options)
-            if image_path:
-                pixmap = QtGui.QPixmap(image_path)
+            self.image_path1, _ = QtWidgets.QFileDialog.getOpenFileName(self.foto1Animallabel, "Select Image", "", "Images (*.png *.jpg *.jpeg *.bmp *.gif *.ico *.tiff)", options=options)
+            if self.image_path1:
+                pixmap = QtGui.QPixmap(self.image_path1)
                 if not pixmap.isNull():
                     self.foto1Animallabel.setPixmap(pixmap.scaled(self.foto1Animallabel.size(), Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
         
-        messageBox = QtWidgets.QMessageBox()
-        messageBox.setText("Função já codificada, falta copiar para codigo")
-        messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-        messageBox.exec()
+    def setFotoAnimal2(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            options = QtWidgets.QFileDialog.Option.ReadOnly
+            self.image_path2, _ = QtWidgets.QFileDialog.getOpenFileName(self.foto2Animallabel, "Select Image", "", "Images (*.png *.jpg *.jpeg *.bmp *.gif *.ico *.tiff)", options=options)
+            if self.image_path2:
+                pixmap = QtGui.QPixmap(self.image_path2)
+                if not pixmap.isNull():
+                    self.foto2Animallabel.setPixmap(pixmap.scaled(self.foto2Animallabel.size(), Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
 
 
     def actionAlterar(self):
-        print("Vai para alterar Dado")
-        messageBox = QtWidgets.QMessageBox()
-        messageBox.setText("Função já codificada, falta copiar para codigo")
-        messageBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-        messageBox.exec()
+        #precisa ir antes para a tela de dados, então ele precisa setar o currente index e preencher os campos:
+        self.stackedWidget.setCurrentIndex(1) #vai para area de cadastro
+        selected_item = self.buscaDeAnimaltableWidget.selectedItems()
+        if selected_item:
+            row = selected_item[0].row()
+            chipCodeAnimal = self.buscaDeAnimaltableWidget.item(row, 0).text()
+            print(chipCodeAnimal)
+        #preenche os campos com os dados pegos da row, melhor pegar o codChip e o restante dos dados num fetechone.
+        try:
+            conn = sqlite3.connect(self.mainDatabasePath)
+            cursor = conn.cursor()
+            query = f''' SELECT nomeAnimal, nascimento, CodChipMae, codChipPai, pelagem, preco_compra, preco_venda, cpfProprietario, cpfCriador, tipoSanquineo, fot1, fot2, new_sexoAnimal FROM animais_data WHERE codChip={chipCodeAnimal}'''
+            cursor.execute(query)
+            resultado = cursor.execute(query).fetchone()
+            conn.close()
+
+            self.codChipEdit.setText(chipCodeAnimal)
+            self.nomeEdit.setText(resultado[0])
+            self.nascimentoEdit.setText(resultado[1])
+            self.codChipMaeEdit.setText(resultado[2])
+            self.codChipPaiEdit.setText(resultado[3])
+            self.pelagemEdit.setText(resultado[4])
+            self.precoCompraEdit.setText(str(resultado[5]))
+            self.precoVendaEdit.setText(str(resultado[6]))
+            self.cpfProprietario.setText(resultado[7])
+            self.cpfCriadorEdit.setText(resultado[8])
+            self.tipoSangueEdit.setText(resultado[9])
+
+            if resultado[10]:
+                self.image_path1 = resultado[10]
+                pixmap = QtGui.QPixmap(resultado[10])
+                if not pixmap.isNull():
+                    self.foto1Animallabel.setPixmap(pixmap.scaled(self.foto1Animallabel.size(), Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
+
+            if resultado[11]:
+                self.image_path2 = resultado[11]
+                pixmap = QtGui.QPixmap(resultado[11])
+                if not pixmap.isNull():
+                    self.foto2Animallabel.setPixmap(pixmap.scaled(self.foto2Animallabel.size(), Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation))
+            
+            self.Sexo.setText(resultado[12])
+
+        except sqlite3.Error as e:
+            print(str(e), " Erro de alteração de dados na busca SQL")
